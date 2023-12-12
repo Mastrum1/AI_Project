@@ -2,18 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Node
+namespace ViewBehaviorTree
 {
-    public delegate NodeStates NodeReturn();
-
-    protected NodeStates _nodeState;
-
-    public NodeStates nodeState
+    public abstract class Node : ScriptableObject
     {
-        get { return _nodeState; }
-    }
-    protected Node() {}
+        public enum State
+        {
+            Success,
+            Failure,
+            Running
+        }
+        [SerializeField] private State state = State.Running;
 
-    public abstract NodeStates Evaluate();
+        [SerializeField] private bool isRunning;
+        
+        public int nodeID;
+
+        protected abstract void OnStart();
+        protected abstract void OnStop();
+        protected abstract State OnUpdate();
+
+        public State Update()
+        {
+            if (!isRunning)
+            {
+                OnStart();
+            }
+
+            state = OnUpdate();
+
+            if (state != State.Running)
+            {
+                OnStop();
+                isRunning = false;
+            }
+            else
+            {
+                isRunning = true;
+            }
+
+            return state;
+        }
+
+    }
 }

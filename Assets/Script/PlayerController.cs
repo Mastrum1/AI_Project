@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,11 @@ using UnityEngine.Scripting.APIUpdating;
 public class Player : MonoBehaviour
 {
     private DefaultPlayerAction _defaultPlayerAction;
-    private InputAction _moveAction;  
+    private InputAction _moveAction; 
 
     [SerializeField] private GameObject _camera;
 
+ 
     private float _moveSpeed = 5f;
 
     void Awake()
@@ -26,12 +28,11 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-       _moveAction.Disable();
+        _moveAction.Disable();
     }
 
     private void FixedUpdate()
     {
-
         // Get the camera's forward and right vectors
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
@@ -45,7 +46,6 @@ public class Player : MonoBehaviour
         cameraRight.Normalize();
 
         Vector2 MoveDir = _moveAction.ReadValue<Vector2>();
-
         Vector3 movement = cameraForward * MoveDir.y + cameraRight * MoveDir.x;
         
         gameObject.GetComponent<Rigidbody>().velocity = movement * _moveSpeed;

@@ -34,6 +34,18 @@ public class Walk : StateMachineBehaviour
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
 
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //return;
+    }
 
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.gameObject.transform.position = animator.transform.position * 0.02f;
+    }
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //
+    }
 
 }

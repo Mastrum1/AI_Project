@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.UI;
 
 public class Idle : StateMachineBehaviour
 {
@@ -38,6 +42,7 @@ public class Idle : StateMachineBehaviour
     {
         return;
     }
+
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //

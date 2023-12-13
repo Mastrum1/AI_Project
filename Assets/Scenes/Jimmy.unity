@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 2858214561353674778, guid: 640aa969a6ec8f740a383384cc6404af,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4565608193093919638, guid: 640aa969a6ec8f740a383384cc6404af,
         type: 3}
       propertyPath: _camera
@@ -351,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 6296077531579998232, guid: 8c16fb636cee9484e989b723c5d59899,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.6
+      value: 40.93
       objectReference: {fileID: 0}
     - target: {fileID: 6296077531579998232, guid: 8c16fb636cee9484e989b723c5d59899,
         type: 3}

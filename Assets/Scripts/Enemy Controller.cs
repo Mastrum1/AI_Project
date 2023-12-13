@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
 
+    Ray ray;
+    RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +25,12 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
-        //transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
 
-        Walk.walk += ChasePlayer;
+        ray = new Ray(transform.position, transform.forward);
+       
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
 
-        if (animator.GetFloat("DistanceFromPlayer") < 20)
-        {
-            animator.SetBool("IsDetected", true);
-        }
-        else
-        {
-            animator.SetBool("IsDetected", false);
-        }
+        CheckRayHit();
 
         if (animator.GetFloat("DistanceFromPlayer") < 2)
         {
@@ -48,5 +45,26 @@ public class EnemyController : MonoBehaviour
     void ChasePlayer()
     {
         agent.SetDestination(player.transform.position);
+        transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+    }
+
+    private void CheckRayHit()
+    {
+        if (Physics.Raycast(ray, out hit, 20))
+        {
+            if (hit.transform.gameObject.tag == "Player")
+            {
+                Debug.Log(hit.transform.gameObject.tag);
+                animator.SetBool("IsDetected", true);
+
+                Walk.walk += ChasePlayer;
+            }
+        }
+        else
+        {
+            animator.SetBool("IsDetected", false);
+
+            Walk.walk -= ChasePlayer;
+        }
     }
 }

@@ -28,11 +28,9 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
 
-        ray = new Ray(transform.position, transform.forward);
-       
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
-
         savedTime += Time.deltaTime;
+
+        CreateFieldOfView();
 
         CheckRayHit();
 
@@ -77,5 +75,12 @@ public class EnemyController : MonoBehaviour
 
             Walk.walk -= ChasePlayer;
         }
+    }
+
+    private void CreateFieldOfView()
+    {
+        ray = new Ray(transform.position, transform.forward);
+
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
     }
 }

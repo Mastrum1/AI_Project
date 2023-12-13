@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
 
     private Animator animator;
+    private float savedTime;
 
     Ray ray;
     RaycastHit hit;
@@ -30,6 +31,8 @@ public class EnemyController : MonoBehaviour
        
         Debug.DrawRay(transform.position, transform.forward, Color.red);
 
+        savedTime += Time.deltaTime;
+
         CheckRayHit();
 
         if (animator.GetFloat("DistanceFromPlayer") < 2)
@@ -44,8 +47,13 @@ public class EnemyController : MonoBehaviour
 
     void ChasePlayer()
     {
-        agent.SetDestination(player.transform.position);
-        transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+        //Debug.Log(savedTime);
+        if (savedTime <= 0.2f)
+        {
+            agent.SetDestination(player.transform.position);
+            transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+        }
+        else return;
     }
 
     private void CheckRayHit()
@@ -54,7 +62,9 @@ public class EnemyController : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Player")
             {
-                Debug.Log(hit.transform.gameObject.tag);
+                Debug.Log(savedTime);
+                savedTime = 0;
+
                 animator.SetBool("IsDetected", true);
 
                 Walk.walk += ChasePlayer;

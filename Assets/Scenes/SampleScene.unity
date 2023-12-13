@@ -353,7 +353,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -44.28
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -480,7 +480,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -44.28
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -601,8 +601,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4456003, y: 0.00000008581956, z: -0.000000042716543, w: 0.8952321}
-  m_LocalPosition: {x: 0.01, y: 10, z: -12.917798}
+  m_LocalRotation: {x: 0.39763308, y: -0.34037808, z: 0.16178554, w: 0.83657414}
+  m_LocalPosition: {x: 4.8971586, y: 10, z: -10.929354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -860,6 +860,7 @@ GameObject:
   - component: {fileID: 483612886}
   - component: {fileID: 483612888}
   - component: {fileID: 483612887}
+  - component: {fileID: 483612889}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -876,7 +877,7 @@ Transform:
   m_GameObject: {fileID: 483612884}
   serializedVersion: 2
   m_LocalRotation: {x: 0.27620506, y: 0.003375888, z: -0.000970185, w: 0.96109235}
-  m_LocalPosition: {x: 0.01, y: 10, z: -12.917798}
+  m_LocalPosition: {x: 4.8971586, y: 10, z: -10.929354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -893,7 +894,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483612884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
   m_Name: 
@@ -942,7 +943,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: -0.22
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
@@ -966,7 +967,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -44.28
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1007,6 +1008,19 @@ MonoBehaviour:
   - {fileID: 758354295}
   - {fileID: 1806642877}
   - {fileID: 1298986416}
+--- !u!114 &483612889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483612884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9b99ff120b6864a8ea6ee1b7022da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationStrengh: 0.5
 --- !u!1 &717127908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758354294}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1988544, y: -0.0025462867, z: 0.0024195416, w: 0.9800228}
+  m_LocalRotation: {x: 0.18392871, y: -0.27555764, z: 0.2618413, w: 0.9064643}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1368,7 +1382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298986415}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16312386, y: -0.002632518, z: 0.0023254703, w: 0.9865993}
+  m_LocalRotation: {x: 0.15088011, y: -0.28488714, z: 0.25165892, w: 0.9125472}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1552,7 +1566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806642876}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18099537, y: -0.0025898756, z: 0.0023728253, w: 0.9834778}
+  m_LocalRotation: {x: 0.1674102, y: -0.2802748, z: 0.25678575, w: 0.90965986}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1654,7 +1668,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -44.28
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1806,6 +1820,7 @@ GameObject:
   - component: {fileID: 2113040904}
   - component: {fileID: 2113040906}
   - component: {fileID: 2113040907}
+  - component: {fileID: 2113040908}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1904,6 +1919,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2113040908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113040902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345af31857eb7f546be6481e0600fe26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3749421613828148624
 PrefabInstance:
   m_ObjectHideFlags: 0

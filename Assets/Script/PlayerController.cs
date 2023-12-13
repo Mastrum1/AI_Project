@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private DefaultPlayerAction _defaultPlayerAction;
+    public DefaultPlayerAction _defaultPlayerAction;
     private InputAction _moveAction;
     private InputAction _fire;
     private bool _fireReady;

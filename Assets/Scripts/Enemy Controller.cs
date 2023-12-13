@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] GameObject render;
+    [SerializeField] NavMeshAgent agent;
 
-    Animator animator;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +22,9 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
-        transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+        //transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
 
-        render.transform.position = transform.position;
-        render.transform.rotation = transform.rotation;
+        Walk.walk += ChasePlayer;
 
         if (animator.GetFloat("DistanceFromPlayer") < 20)
         {
@@ -42,5 +43,10 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("IsInRange", false);
         }
+    }
+
+    void ChasePlayer()
+    {
+        agent.SetDestination(player.transform.position);
     }
 }

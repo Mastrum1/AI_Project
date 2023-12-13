@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     void ChasePlayer()
     {
         //Debug.Log(savedTime);
-        if (savedTime <= 0.2f)
+        if (savedTime <= 0.5f)
         {
             agent.SetDestination(player.transform.position);
             transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Player")
             {
-                Debug.Log(savedTime);
+                //Debug.Log(savedTime);
                 savedTime = 0;
 
                 animator.SetBool("IsDetected", true);

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Transparent
-  m_Shader: {fileID: -6465566751694194690, guid: 4d121a1f5bf7355429da1cb69932da41,
+  m_Name: Trails
+  m_Shader: {fileID: -6465566751694194690, guid: 43362256d37ce0146952763d3a776844,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: d52c84df37224ac46962e9540910eee1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,19 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BottomLine: 0.35
-    - _Metallic: 0.33
+    - _DissolveScale: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.78
-    - _TopLine: 0.65
-    - _Transparency: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.77560496, b: 0, a: 0}
-    - _BottomColor: {r: 0.9528302, g: 0.6841918, b: 0, a: 0}
-    - _TopColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Color_1: {r: 28.51895, g: 8.9802885, b: 0, a: 0}
+    - _Color_2: {r: 0, g: 0, b: 0, a: 0}
+    - _DissolveSpeedLow: {r: 0.25, g: 1.7, b: 0, a: 0}
+    - _TextureSpeed: {r: -0.3, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1298639452576683427
+--- !u!114 &2628448179627192009
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

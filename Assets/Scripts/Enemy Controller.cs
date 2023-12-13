@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] float detectionTime;
 
     private Animator animator;
     private float savedTime;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
     void ChasePlayer()
     {
         //Debug.Log(savedTime);
-        if (savedTime <= 0.5f)
+        if (savedTime <= detectionTime)
         {
             agent.SetDestination(player.transform.position);
             transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);

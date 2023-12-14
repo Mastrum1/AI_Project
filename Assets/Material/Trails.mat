@@ -46,10 +46,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color_1: {r: 28.51895, g: 8.9802885, b: 0, a: 0}
-    - _Color_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color_1: {r: 207.93658, g: 0, b: 0, a: 0}
+    - _Color_2: {r: 0, g: 44.706337, b: 311.49722, a: 0}
     - _DissolveSpeedLow: {r: 0.25, g: 1.7, b: 0, a: 0}
-    - _TextureSpeed: {r: 2, g: 0, b: 0, a: 0}
+    - _TextureSpeed: {r: 3, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2628448179627192009
 MonoBehaviour:

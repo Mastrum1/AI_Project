@@ -13,10 +13,31 @@ public class BehaviourTreeLauncher : MonoBehaviour
         var log = ScriptableObject.CreateInstance<DebugLogNode>();
         log.message = "Hello World";
 
-        tree.rootNode = log;
+        var pause = ScriptableObject.CreateInstance<WaitNode>();
+
+        var log2 = ScriptableObject.CreateInstance<DebugLogNode>();
+        log2.message = "Hey";
+
+        var pause2 = ScriptableObject.CreateInstance<WaitNode>();
+
+        var log3 = ScriptableObject.CreateInstance<DebugLogNode>();
+        log3.message = "YO";
+
+        var pause3 = ScriptableObject.CreateInstance<WaitNode>();
+
+        var seq = ScriptableObject.CreateInstance<SequencerNode>();
+        seq.children.Add(log);
+        seq.children.Add(pause);
+        seq.children.Add(log2);
+        seq.children.Add(pause2);
+        seq.children.Add(log3);
+        seq.children.Add(pause3);
+
 
         var repeat = ScriptableObject.CreateInstance<RepeatNode>();
-        repeat.child = log;
+        repeat.child = seq;
+        
+        tree.rootNode = repeat;
     }
 
     // Update is called once per frame

@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _camera;
     [SerializeField] private GameObject _poi;
     [SerializeField] private GameObject _projectile;
+
+    [SerializeField] private Animator _playerAnimations;
  
     private float _moveSpeed = 5f;
 
     void Awake()
     {
        _defaultPlayerAction = new DefaultPlayerAction();
-        _fireReady = true;
+       _fireReady = true;
     }
 
     private void OnEnable()
@@ -45,10 +47,13 @@ public class PlayerController : MonoBehaviour
         Fire();
 
         _playerBody.transform.LookAt(_poi.transform);
+        
     }
 
     private void Mouvements()
     {
+
+        Debug.Log(_playerAnimations.GetBool("Walk"));
         // Get the camera's forward and right vectors
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
@@ -62,9 +67,40 @@ public class PlayerController : MonoBehaviour
         cameraRight.Normalize();
 
         Vector2 MoveDir = _moveAction.ReadValue<Vector2>();
+
+        if (MoveDir.y > 0)
+            _playerAnimations.SetBool("Walk", true);
+        else if (MoveDir.y == 0)
+            _playerAnimations.SetBool("Walk", false);
+
+
+        if (MoveDir.x > 0)
+        {
+            _playerAnimations.SetBool("StrafeLeft", false);
+            _playerAnimations.SetBool("StrafeRight", true);
+        }
+
+        else if (MoveDir.x < 0)
+        {
+            _playerAnimations.SetBool("StrafeLeft", true);
+            _playerAnimations.SetBool("StrafeRight", false);
+        }
+
+        else if (MoveDir.x == 0)
+        {
+            _playerAnimations.SetBool("StrafeRight", false);
+            _playerAnimations.SetBool("StrafeLeft", false);
+        }
+
+
+
+
+
         Vector3 movement = cameraForward * MoveDir.y + cameraRight * MoveDir.x;
 
         gameObject.GetComponent<Rigidbody>().velocity = movement * _moveSpeed;
+
+  
     }
 
     private void Fire()
@@ -72,10 +108,14 @@ public class PlayerController : MonoBehaviour
         float fire = _fire.ReadValue<float>();
         if (fire > 0 && _fireReady)
         {
+            _playerAnimations.SetBool("Attack", true);
             GameObject myProj = Instantiate(_projectile, transform.position, _playerBody.transform.rotation);
             myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
             StartCoroutine(FireCooldown());
         }
+        else
+            _playerAnimations.SetBool("Attack", false);
+
     }
 
     IEnumerator FireCooldown()
@@ -84,4 +124,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _fireReady = true;
     }
+
+
 }

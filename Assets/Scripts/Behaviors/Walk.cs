@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class Walk : StateMachineBehaviour
 {
-    public static event Action walk;
+    GameObject player;
+    NavMeshAgent agent;
+    GameObject user;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //return;
+        user = animator.gameObject;
+        agent = user.GetComponent<EnemyController>().agent;
+        player = user.GetComponent<EnemyController>().player;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //animator.gameObject.transform.position += animator.gameObject.transform.forward * 0.02f;
-        walk?.Invoke();
+        if (user.GetComponent<EnemyController>().savedTime <= user.GetComponent<EnemyController>().detectionTime)
+        {
+            agent.SetDestination(player.transform.position);
+
+            user.transform.rotation = Quaternion.LookRotation(player.transform.position - user.transform.position, user.transform.up);
+        }
+        else return;
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //
     }
-
 }

@@ -1,38 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] float detectionTime;
+    public GameObject player;
+    public NavMeshAgent agent;
+    public float detectionTime;
+    [SerializeField] float fovAngle;
+    [NonSerialized] public float savedTime;
+
+    public static event Action walk;
+    public static event Action returnToPos;
 
     private Animator animator;
-    private float savedTime;
+    private Vector3 originalPos;
 
-    Ray ray;
+    Ray[] ray;
     RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
+        //Debug.Log(transform.forward);
 
         savedTime += Time.deltaTime;
 
         CreateFieldOfView();
 
         CheckRayHit();
+
+        CheckStartPos();
 
         if (animator.GetFloat("DistanceFromPlayer") < 2)
         {
@@ -44,43 +54,63 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void ChasePlayer()
+    private void WalkBack()
     {
-        //Debug.Log(savedTime);
-        if (savedTime <= detectionTime)
-        {
-            agent.SetDestination(player.transform.position);
-            transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
-        }
-        else return;
+        agent.SetDestination(originalPos);
     }
 
     private void CheckRayHit()
     {
-        if (Physics.Raycast(ray, out hit, 20))
+        for (int i = 0; i < ray.Length - 1; i++)
         {
-            if (hit.transform.gameObject.tag == "Player")
+            if (Physics.Raycast(ray[i], out hit, 20))
             {
-                //Debug.Log(savedTime);
-                savedTime = 0;
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                    //Debug.Log(savedTime);
+                    savedTime = 0;
 
-                animator.SetBool("IsDetected", true);
+                    animator.SetBool("IsDetected", true);
 
-                Walk.walk += ChasePlayer;
+                    walk?.Invoke();
+                }
             }
-        }
-        else
-        {
-            animator.SetBool("IsDetected", false);
-
-            Walk.walk -= ChasePlayer;
+            else
+            {
+                animator.SetBool("IsDetected", false);
+            }
         }
     }
 
     private void CreateFieldOfView()
     {
-        ray = new Ray(transform.position, transform.forward);
+        ray = new Ray[2];
 
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
+        ray[0] = new Ray(transform.position, transform.forward);
+
+        for (int i = 1; i < ray.Length; i++)
+        {
+            float rand = UnityEngine.Random.Range(-fovAngle, fovAngle);
+
+            ray[i] = new Ray(Quaternion.AngleAxis(rand, transform.up) * transform.forward, transform.forward);
+
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(rand, transform.up) * transform.forward, Color.red);
+        }
+    }
+
+    private void CheckStartPos()
+    {
+        if (originalPos != transform.position)
+        {
+            animator.SetBool("IsNotAtStartingPos", true);
+
+            ReturnToPos.returnToPos += WalkBack;
+        }
+        else
+        {
+            animator.SetBool("IsNotAtStartingPos", false);
+
+            ReturnToPos.returnToPos -= WalkBack;
+        }
     }
 }

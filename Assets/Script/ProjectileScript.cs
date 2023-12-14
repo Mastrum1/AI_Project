@@ -12,7 +12,6 @@ public class ProjectileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DestroyProjectile());
         _isExploding = false;
     }
 
@@ -30,12 +29,5 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         
-    }
-
-    IEnumerator DestroyProjectile()
-    {
-        yield return new WaitForSeconds(10f);
-        if (gameObject && !_isExploding)
-            Destroy(gameObject);
     }
 }

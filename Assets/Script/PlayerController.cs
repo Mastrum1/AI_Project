@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject _camera;
 
- 
+
     private float _moveSpeed = 5f;
 
     void Awake()

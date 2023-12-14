@@ -12,10 +12,12 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent agent;
     public float detectionTime;
     [SerializeField] float fovAngle;
+    [SerializeField] float HP;
     [NonSerialized] public float savedTime;
     [NonSerialized] public Vector3 originalPos;
 
     private Animator animator;
+    private float currentHP;
 
     Ray[] ray;
     RaycastHit hit;
@@ -25,15 +27,15 @@ public class EnemyController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         originalPos = transform.position;
+        currentHP = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
-        //Debug.Log(transform.forward);
-
         savedTime += Time.deltaTime;
+
+        CheckIfDead();
 
         CreateFieldOfView();
 
@@ -41,14 +43,8 @@ public class EnemyController : MonoBehaviour
 
         CheckStartPos();
 
-        if (animator.GetFloat("DistanceFromPlayer") < 2)
-        {
-            animator.SetBool("IsInRange", true);
-        }
-        else
-        {
-            animator.SetBool("IsInRange", false);
-        }
+        CheckIfInRange();
+        
     }
 
     private void CheckRayHit()
@@ -97,6 +93,33 @@ public class EnemyController : MonoBehaviour
         else
         {
             animator.SetBool("IsNotAtStartingPos", false);
+        }
+    }
+
+    private void CheckIfInRange()
+    {
+
+        animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
+
+        if (animator.GetFloat("DistanceFromPlayer") < 2)
+        {
+            animator.SetBool("IsInRange", true);
+        }
+        else
+        {
+            animator.SetBool("IsInRange", false);
+        }
+    }
+
+    private void CheckIfDead()
+    {
+        if (currentHP <= 0)
+        {
+            animator.SetBool("IsDead", true);
+        }
+        else 
+        {
+            animator.SetBool("IsDead", false);
         }
     }
 }

@@ -18,7 +18,16 @@
                     "name": "Look",
                     "type": "Value",
                     "id": "6c64e6a2-191d-4679-9db1-e1e323ee3c5b",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look (Mouse)",
+                    "type": "Value",
+                    "id": "aeb43776-a42d-43d6-ab0b-102f5dc39c8d",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -27,6 +36,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "9bc7c024-9e19-4dbf-9147-81de14c0b06d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockFreeLook",
+                    "type": "Button",
+                    "id": "6e6c628c-dc24-4c8f-8b33-05ea0db414a3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -251,6 +269,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "958be769-2f08-48d3-8b06-2a4da82cfd68",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnlockFreeLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5e8a2e6-e55d-49ae-bffd-c340d6069d13",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look (Mouse)",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

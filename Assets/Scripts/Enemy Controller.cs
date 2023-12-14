@@ -13,12 +13,9 @@ public class EnemyController : MonoBehaviour
     public float detectionTime;
     [SerializeField] float fovAngle;
     [NonSerialized] public float savedTime;
-
-    public static event Action walk;
-    public static event Action returnToPos;
+    [NonSerialized] public Vector3 originalPos;
 
     private Animator animator;
-    private Vector3 originalPos;
 
     Ray[] ray;
     RaycastHit hit;
@@ -54,11 +51,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void WalkBack()
-    {
-        agent.SetDestination(originalPos);
-    }
-
     private void CheckRayHit()
     {
         for (int i = 0; i < ray.Length - 1; i++)
@@ -71,8 +63,6 @@ public class EnemyController : MonoBehaviour
                     savedTime = 0;
 
                     animator.SetBool("IsDetected", true);
-
-                    walk?.Invoke();
                 }
             }
             else
@@ -103,14 +93,10 @@ public class EnemyController : MonoBehaviour
         if (originalPos != transform.position)
         {
             animator.SetBool("IsNotAtStartingPos", true);
-
-            ReturnToPos.returnToPos += WalkBack;
         }
         else
         {
             animator.SetBool("IsNotAtStartingPos", false);
-
-            ReturnToPos.returnToPos -= WalkBack;
         }
     }
 }

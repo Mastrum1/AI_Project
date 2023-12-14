@@ -5,7 +5,7 @@ using System;
 using UnityEngine.AI;
 using Unity.VisualScripting;
 
-public class Walk : StateMachineBehaviour
+public class ChasePlayer : StateMachineBehaviour
 {
     GameObject player;
     NavMeshAgent agent;

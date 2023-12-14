@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &109557865572986561
 Transform:
   m_ObjectHideFlags: 0
@@ -5267,6 +5267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosion: {fileID: 1765036016281012524}
+  _vfx: {fileID: 4033073993219698826}
+  _trail: {fileID: 1050964754246473433}
 --- !u!1 &2812948795054277535
 GameObject:
   m_ObjectHideFlags: 0
@@ -15576,7 +15578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1416638183583426590
 Transform:
   m_ObjectHideFlags: 0
@@ -15641,7 +15643,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4033073993219698826}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

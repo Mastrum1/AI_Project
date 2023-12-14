@@ -6,16 +6,16 @@ public class MousePosition : MonoBehaviour
 {
     private Vector3 _screenPosition; 
     private Vector3 _worldPosition;
-    Plane plane = new Plane(Vector3.down, Vector3.zero);
+    RaycastHit hit = new RaycastHit();
     // Update is called once per frame
     void Update()
     {
         _screenPosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(_screenPosition);
 
-        if (plane.Raycast(ray, out float distance)) 
+        if (Physics.Raycast(ray, out hit)) 
         {
-            _worldPosition = ray.GetPoint(distance);
+            _worldPosition = hit.point;
         }
         transform.position = _worldPosition;
     }

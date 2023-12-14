@@ -265,7 +265,8 @@ GameObject:
   - component: {fileID: 3398883541773705262}
   - component: {fileID: 5878126401156879846}
   - component: {fileID: 38269734924464305}
-  m_Layer: 0
+  - component: {fileID: 4941805705601064157}
+  m_Layer: 2
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,17 +307,30 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4941805705601064157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765036016281012524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86b9f540072a4f42b82c9fa5538e158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _area: {fileID: 38269734924464305}
 --- !u!1 &2052141208355945407
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +342,7 @@ GameObject:
   - component: {fileID: 7055963218955263003}
   - component: {fileID: 8055226954653513670}
   - component: {fileID: 7399705478925245787}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: smoke_spread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5336,7 +5350,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 68
   m_LayerOverridePriority: 1
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5388,6 +5402,7 @@ MonoBehaviour:
   _explosion: {fileID: 1765036016281012524}
   _vfx: {fileID: 4033073993219698826}
   _trail: {fileID: 1050964754246473433}
+  _light: {fileID: 1559752999645031706}
 --- !u!1 &2812948795054277535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,7 +5414,7 @@ GameObject:
   - component: {fileID: 2812948795054277534}
   - component: {fileID: 2812948795054277532}
   - component: {fileID: 2812948795054277533}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10610,7 +10625,7 @@ GameObject:
   - component: {fileID: 2812948795342639531}
   - component: {fileID: 2812948795342639529}
   - component: {fileID: 2812948795342639530}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: sharp_out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15808,7 +15823,7 @@ GameObject:
   - component: {fileID: 12699975904201131}
   - component: {fileID: 7923617728830267950}
   - component: {fileID: 5688352723361423346}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: smoke_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20715,7 +20730,7 @@ GameObject:
   - component: {fileID: 8961174062217595446}
   - component: {fileID: 8961174062217595444}
   - component: {fileID: 8961174062217595445}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: center_light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25631,7 +25646,7 @@ GameObject:
   - component: {fileID: 8961174062669330037}
   - component: {fileID: 8961174062669330043}
   - component: {fileID: 8961174062669330036}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FX_splash_explosion_02_air
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoorWest : MonoBehaviour
+public class DoorScript : MonoBehaviour
 {
     [SerializeField] GameObject _door;
     [SerializeField] float translateSpeed = 1f;

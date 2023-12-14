@@ -16,8 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _camera;
     [SerializeField] private GameObject _poi;
     [SerializeField] private GameObject _projectile;
+    [SerializeField] Rigidbody _rb;
  
     private float _moveSpeed = 5f;
+
+    public Vector3 KnockBackDirection { get; private set; }
+
 
     void Awake()
     {
@@ -42,9 +46,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Mouvements();
-        Fire();
 
         _playerBody.transform.LookAt(_poi.transform);
+        Fire();
+        _playerBody.transform.rotation = Quaternion.Euler(0, _playerBody.transform.rotation.eulerAngles.y, _playerBody.transform.rotation.eulerAngles.z);
     }
 
     private void Mouvements()
@@ -64,17 +69,27 @@ public class PlayerController : MonoBehaviour
         Vector2 MoveDir = _moveAction.ReadValue<Vector2>();
         Vector3 movement = cameraForward * MoveDir.y + cameraRight * MoveDir.x;
 
-        gameObject.GetComponent<Rigidbody>().velocity = movement * _moveSpeed;
+        KnockBackDirection = Vector3.Lerp(KnockBackDirection, Vector3.zero, Time.fixedDeltaTime)/2;
+
+        _rb.velocity = movement * _moveSpeed + KnockBackDirection;
+    }
+    public void Knockback(Vector3 dir)
+    {
+        KnockBackDirection = dir;
     }
 
     private void Fire()
     {
         float fire = _fire.ReadValue<float>();
-        if (fire > 0 && _fireReady)
-        {
-            GameObject myProj = Instantiate(_projectile, transform.position, _playerBody.transform.rotation);
-            myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
-            StartCoroutine(FireCooldown());
+        if ( gameObject.GetComponent<Player>().mana >= 10)
+        {           
+            if (fire > 0 && _fireReady)
+            {
+                gameObject.GetComponent<Player>().mana -= 10;
+                GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
+                myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
+                StartCoroutine(FireCooldown());
+            }
         }
     }
 

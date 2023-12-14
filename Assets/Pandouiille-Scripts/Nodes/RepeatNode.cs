@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionNode : Node
+public class RepeatNode : DecoratorNode
 {
-    public string message = "Action" ;
     protected override void OnStart()
     {
-        Debug.Log($"OnStart{message}");
+        base.OnStart();
     }
+
     protected override void OnStop()
     {
-        Debug.Log($"OnStop{message}");
+        base.OnStop();
     }
 
     protected override State OnUpdate()
     {
-        Debug.Log($"OnUpdate{message}");
-        return State.Success;
+        child.Update();
+        return State.Running;
     }
-
 }

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionNode : Node
+public class DebugLogNode : ActionNode
 {
-    public string message = "Action" ;
+    public new string message = "Debug";
+
     protected override void OnStart()
     {
         Debug.Log($"OnStart{message}");
@@ -19,5 +20,4 @@ public class ActionNode : Node
         Debug.Log($"OnUpdate{message}");
         return State.Success;
     }
-
 }

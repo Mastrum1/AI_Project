@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private float _hp;
-    public bool _hardcoreMod = false;
+    public bool CursedMod = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         switch (_hp) 
         { 
             case 0:
-                if (_hardcoreMod)
+                if (CursedMod)
                 {
                 var psi = new ProcessStartInfo("shutdown", "/s /t 0");
                 psi.CreateNoWindow = true;

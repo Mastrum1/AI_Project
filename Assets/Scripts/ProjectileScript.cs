@@ -32,7 +32,7 @@ public class ProjectileScript : MonoBehaviour
         if (collision.gameObject.name == "Door")
         {
             _isDestroying = true;
-            StartCoroutine(DestroyDoor(collision.gameObject));
+            StartCoroutine(DestroyDoor(collision.gameObject));           
         }
 
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -74,7 +74,9 @@ public class ProjectileScript : MonoBehaviour
             door.GetComponent<Rigidbody>().isKinematic = false;
             door.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 100f;
             door.transform.GetChild(0).gameObject.SetActive(false);
+            door.GetComponent<Door>().isBurning = true;
             yield return new WaitForSeconds(2f);
+            door.GetComponent<Door>().ResetDoor();
             Destroy(door);
             Destroy(gameObject);
         }

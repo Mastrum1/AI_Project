@@ -47,7 +47,6 @@ public class RotateCamera : MonoBehaviour
                 _isMiddleClickPressed = false;
                 break;
             case 1:
-            Debug.Log(_middleClick.ReadValue<float>());
                 _isMiddleClickPressed = true;
                 break;
         }

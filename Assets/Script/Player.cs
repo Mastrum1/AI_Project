@@ -5,18 +5,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float _hp;
+    private float _maxHp;
+    public float hp;
+    private float _maxMana;
+    public float mana;
+    private bool _manaRegen = false;
+    private bool _HealRegen = false;
     public bool CursedMod = false;
+
     // Start is called before the first frame update
     void Awake()
     {
-        _hp = 100;
+        _maxHp = hp;
+        _maxMana = mana;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (_hp) 
+        if (!_manaRegen && mana < _maxMana)
+            StartCoroutine(ManaRegen());
+        if (!_HealRegen && hp < _maxHp)
+            StartCoroutine(HealRegen());
+
+        switch (hp) 
         { 
             case 0:
                 if (CursedMod)
@@ -28,6 +40,20 @@ public class Player : MonoBehaviour
                 }
                 break;
         }
-        _hp -= 1;
+    }
+
+    IEnumerator ManaRegen()
+    {
+        _manaRegen = true;
+        yield return new WaitForSeconds(.5f);
+        mana ++;
+        _manaRegen = false;
+    }
+    IEnumerator HealRegen()
+    {
+        _HealRegen = true;
+        yield return new WaitForSeconds(3f);
+        hp ++;
+        _HealRegen = false;
     }
 }

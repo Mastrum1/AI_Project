@@ -180,7 +180,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9221283, g: 0, b: 0.9254902, a: 1}
+  m_Color: {r: 0.9254902, g: 0, b: 0.09268838, a: 1}
   m_Intensity: 10
   m_Range: 100
   m_SpotAngle: 30
@@ -5399,6 +5399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146a4cf2dd5e892419f2512cb8b924f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 343944535859803099}
+  _mesh: {fileID: 8897510009083743693}
+  _rb: {fileID: 287899801334674383}
   _explosion: {fileID: 1765036016281012524}
   _vfx: {fileID: 4033073993219698826}
   _trail: {fileID: 1050964754246473433}

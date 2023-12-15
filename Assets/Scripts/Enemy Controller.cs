@@ -78,9 +78,9 @@ public class EnemyController : MonoBehaviour
         {
             float rand = UnityEngine.Random.Range(-fovAngle, fovAngle);
 
-            ray[i] = new Ray(Quaternion.AngleAxis(rand, transform.up) * transform.forward, transform.forward);
+            ray[i] = new Ray(Quaternion.AngleAxis((rand/2), transform.up) * transform.forward, transform.forward);
 
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(rand, transform.up) * transform.forward, Color.red);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, Color.red);
         }
     }
 

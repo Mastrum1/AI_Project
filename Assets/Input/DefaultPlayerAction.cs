@@ -40,7 +40,16 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""6c64e6a2-191d-4679-9db1-e1e323ee3c5b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look (Mouse)"",
+                    ""type"": ""Value"",
+                    ""id"": ""aeb43776-a42d-43d6-ab0b-102f5dc39c8d"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -49,6 +58,15 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""9bc7c024-9e19-4dbf-9147-81de14c0b06d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnlockFreeLook"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e6c628c-dc24-4c8f-8b33-05ea0db414a3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -81,7 +99,7 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""e2062cb9-1b15-46a2-838c-2f8d72a0bdd9"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -125,7 +143,7 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""d2581a9b-1d11-4566-b27d-b92aff5fabbc"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -189,37 +207,37 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""name"": ""Rotate"",
+                    ""id"": ""e43883d5-e7aa-4266-93c0-7bab150eeab9"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Look"",
-                    ""isComposite"": false,
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""name"": ""Left"",
+                    ""id"": ""ec8b0955-ba94-41a2-aa94-00abda587372"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""name"": ""Right"",
+                    ""id"": ""5aaeb746-fbfa-470f-bb7b-091e73ea7822"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Joystick"",
+                    ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -273,6 +291,28 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""958be769-2f08-48d3-8b06-2a4da82cfd68"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnlockFreeLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5e8a2e6-e55d-49ae-bffd-c340d6069d13"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look (Mouse)"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -862,7 +902,9 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_LookMouse = m_Player.FindAction("Look (Mouse)", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_UnlockFreeLook = m_Player.FindAction("UnlockFreeLook", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -938,14 +980,18 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_LookMouse;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_UnlockFreeLook;
     public struct PlayerActions
     {
         private @DefaultPlayerAction m_Wrapper;
         public PlayerActions(@DefaultPlayerAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @LookMouse => m_Wrapper.m_Player_LookMouse;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @UnlockFreeLook => m_Wrapper.m_Player_UnlockFreeLook;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -961,9 +1007,15 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @LookMouse.started += instance.OnLookMouse;
+            @LookMouse.performed += instance.OnLookMouse;
+            @LookMouse.canceled += instance.OnLookMouse;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @UnlockFreeLook.started += instance.OnUnlockFreeLook;
+            @UnlockFreeLook.performed += instance.OnUnlockFreeLook;
+            @UnlockFreeLook.canceled += instance.OnUnlockFreeLook;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -974,9 +1026,15 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @LookMouse.started -= instance.OnLookMouse;
+            @LookMouse.performed -= instance.OnLookMouse;
+            @LookMouse.canceled -= instance.OnLookMouse;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @UnlockFreeLook.started -= instance.OnUnlockFreeLook;
+            @UnlockFreeLook.performed -= instance.OnUnlockFreeLook;
+            @UnlockFreeLook.canceled -= instance.OnUnlockFreeLook;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1161,7 +1219,9 @@ public partial class @DefaultPlayerAction: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnLookMouse(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnUnlockFreeLook(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

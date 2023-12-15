@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,13 +24,30 @@ public class BehaviourTreeView : GraphView
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Pandouiille-Editor/BehaviourTreeEditor.uss");
         styleSheets.Add(styleSheet);
     }
-
     internal void PopulateView(BehaviourTree tree)
     {
         this.tree = tree;
-        
+
+        graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
-        this.nodes.ForEach(n => CreateNodeView(n));
+        graphViewChanged += OnGraphViewChanged;
+
+        tree.Nodes.ForEach(n => CreateNodeView(n));
+    }
+
+    private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
+    {
+        if (graphViewChange.elementsToRemove != null)
+        {
+            graphViewChange.elementsToRemove.ForEach(elem =>
+            {   NodeView nodeView = elem as NodeView;
+                if (nodeView != null)
+                {
+                    tree.DeleteNode(nodeView.node);
+                }
+            });
+        }
+        return graphViewChange;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -58,9 +74,7 @@ public class BehaviourTreeView : GraphView
                 evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
             }
         }
-
     }
-
     void CreateNode(System.Type type)
     {
         Node node = tree.CreateNode(type);
@@ -69,7 +83,9 @@ public class BehaviourTreeView : GraphView
 
     void CreateNodeView(Node node)
     {
-        NodeView nodeView = new NodeView(node);
+        NodeView nodeView = new (node);
         AddElement(nodeView);
     }
+
+
 }

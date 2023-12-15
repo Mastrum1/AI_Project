@@ -8,7 +8,7 @@ public class BehaviourTree : ScriptableObject
 {
     public Node rootNode;
     public Node.State treeState = Node.State.Running;
-    public List<Node> nodes = new List<Node>();
+    public List<Node> Nodes = new List<Node>();
 
     public Node.State Update()
     {
@@ -24,7 +24,7 @@ public class BehaviourTree : ScriptableObject
         Node node = ScriptableObject.CreateInstance(type) as Node;
         node.name = type.Name;
         node.guid = GUID.Generate().ToString();
-        nodes.Add(node);
+        Nodes.Add(node);
 
         AssetDatabase.AddObjectToAsset(node, this);
         AssetDatabase.SaveAssets();
@@ -33,7 +33,7 @@ public class BehaviourTree : ScriptableObject
 
     public void DeleteNode(Node node)
     {
-        nodes.Remove(node);
+        Nodes.Remove(node);
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }

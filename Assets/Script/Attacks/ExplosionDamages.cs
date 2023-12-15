@@ -14,7 +14,7 @@ public class ExplosionDamages : MonoBehaviour
         _area.radius = 0f;
     }
 
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
         GameObject entity = other.gameObject;
         switch (other.gameObject.tag)
@@ -27,7 +27,7 @@ public class ExplosionDamages : MonoBehaviour
                 entity.GetComponent<Player>().hp -= 10;
                 break;
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

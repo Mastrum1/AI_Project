@@ -37,7 +37,7 @@ public class BehaviourTreeEditor : EditorWindow
         BehaviourTree tree = Selection.activeObject as BehaviourTree;
         if (tree) 
         { 
-            treeView.PopulateView(treeView, tree);
+            treeView.PopulateView(tree);
         }
     }
 }

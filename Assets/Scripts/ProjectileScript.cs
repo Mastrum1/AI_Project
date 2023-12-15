@@ -44,8 +44,7 @@ public class ProjectileScript : MonoBehaviour
         _mesh.enabled = false;
         _rb.velocity = Vector3.zero;
         _explosion.SetActive(true);
-        if (!_isDestroying)
-            Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.5f);
 
     }
 
@@ -76,8 +75,9 @@ public class ProjectileScript : MonoBehaviour
     {
         if (door != null)
         {
-            door.GetComponent<Rigidbody>().isKinematic = false;
-            door.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 100f;
+            Rigidbody _doorRb = door.GetComponent<Rigidbody>();
+            _doorRb.isKinematic = false;
+            _doorRb.velocity = gameObject.transform.forward * 100f;
             door.transform.GetChild(0).gameObject.SetActive(false);
             door.GetComponent<Door>().isBurning = true;
             yield return new WaitForSeconds(2f);

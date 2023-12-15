@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,11 +15,15 @@ public class Player : MonoBehaviour
     private bool _HealRegen = false;
     public bool CursedMod = false;
 
+    [SerializeField] private GameObject UI;
+    private Image health;
+
     // Start is called before the first frame update
     void Awake()
     {
         _maxHp = hp;
         _maxMana = mana;
+       health = UI.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -32,6 +38,13 @@ public class Player : MonoBehaviour
             hp = 0;
         }
             
+        float hpLossPercent = 1 - (hp / _maxHp);
+        if (hpLossPercent > 0.5f)
+        {
+            var tempColor = health.color;
+            tempColor.a = hpLossPercent;
+            health.color = tempColor;
+        }
 
         switch (hp) 
         { 

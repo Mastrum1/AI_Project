@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] MeshRenderer mesh;
+
     public float VanishValue = -1f;
     float VanishGradient = 0.1f;
     bool isVanishing = false;

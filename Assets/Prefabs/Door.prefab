@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5643090492188231527}
   - component: {fileID: 5104735345260017544}
   - component: {fileID: -603959140683706556}
+  - component: {fileID: 2655329830243120187}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6892232844440235036, guid: fcd345556e379a84db61fa0bd33433f0, type: 3}
+  - {fileID: 2100000, guid: cd7285d0172a45e42ac92d9d8d75919b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,6 +135,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2655329830243120187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865133558273716435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2a31a9000fed342af1e3075d356d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 5643090492188231527}
+  VanishValue: -1
+  isBurning: 0
 --- !u!1 &5927251460681829980
 GameObject:
   m_ObjectHideFlags: 0

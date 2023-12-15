@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 MoveDir = _moveAction.ReadValue<Vector2>();
 
+
         if (MoveDir.y > 0)
             _playerAnimations.SetBool("Walk", true);
         else if (MoveDir.y == 0)
@@ -118,15 +119,15 @@ public class PlayerController : MonoBehaviour
         {           
             if (fire > 0 && _fireReady)
             {
+                _playerAnimations.SetBool("Attack", true);
                 gameObject.GetComponent<Player>().mana -= 10;
                 GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
                 myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
                 StartCoroutine(FireCooldown());
             }
-        }
-        else
-            _playerAnimations.SetBool("Attack", false);
+            else _playerAnimations.SetBool("Attack", false);
 
+        }
     }
 
     IEnumerator FireCooldown()

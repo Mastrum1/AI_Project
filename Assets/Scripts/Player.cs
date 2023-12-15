@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
             StartCoroutine(ManaRegen());
         if (!_HealRegen && hp < _maxHp)
             StartCoroutine(HealRegen());
+        if (hp <= 0)
+        {
+            hp = 0;
+        }
+            
 
         switch (hp) 
         { 

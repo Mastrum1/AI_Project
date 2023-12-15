@@ -29,15 +29,10 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void ResetDoor()
-    {
-        mesh.sharedMaterial.SetFloat("_Value", -1);
-    }
-
     IEnumerator Vanish(float VanishValue)
     {
         isVanishing = true;
-        mesh.sharedMaterial.SetFloat("_Value", VanishValue);     
+        mesh.material.SetFloat("_Value", VanishValue);     
         yield return new WaitForSeconds(0.05f);
         isVanishing = false;
     }

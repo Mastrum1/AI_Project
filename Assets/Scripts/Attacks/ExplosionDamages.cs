@@ -6,6 +6,7 @@ public class ExplosionDamages : MonoBehaviour
 {
     [SerializeField] private SphereCollider _area;
     private float _maxRadius = 0f;
+    private bool _playertouched = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,9 @@ public class ExplosionDamages : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Player":
-                if (entity.TryGetComponent<PlayerController>(out var pc))
+                if (entity.TryGetComponent<PlayerController>(out var pc) && !_playertouched)
                 {
+                    _playertouched = true;
                     pc.Knockback((entity.transform.position - transform.position)* 10f);
                 }
                 entity.GetComponent<Player>().hp -= 10;

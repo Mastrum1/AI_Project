@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _fire;
     private bool _fireReady;
 
+    [SerializeField] private Player _playerManager;
     [SerializeField] private GameObject _playerBody;
     [SerializeField] private GameObject _camera;
     [SerializeField] private GameObject _poi;
@@ -56,8 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private void Mouvements()
     {
-
-        Debug.Log(_playerAnimations.GetBool("Walk"));
         // Get the camera's forward and right vectors
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
@@ -115,12 +114,12 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         float fire = _fire.ReadValue<float>();
-        if ( gameObject.GetComponent<Player>().mana >= 10)
+        if ( _playerManager.mana >= 10)
         {           
             if (fire > 0 && _fireReady)
             {
                 _playerAnimations.SetBool("Attack", true);
-                gameObject.GetComponent<Player>().mana -= 10;
+                _playerManager.mana -= 10;
                 GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
                 myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
                 StartCoroutine(FireCooldown());

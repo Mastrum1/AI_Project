@@ -5,33 +5,54 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private DefaultPlayerAction _defaultPlayerAction;
-    private InputAction _moveAction; 
+    public DefaultPlayerAction _defaultPlayerAction;
+    private InputAction _moveAction;
+    private InputAction _fire;
+    private bool _fireReady;
 
+    [SerializeField] private GameObject _playerBody;
     [SerializeField] private GameObject _camera;
-
-
+    [SerializeField] private GameObject _poi;
+    [SerializeField] private GameObject _projectile;
+    [SerializeField] Rigidbody _rb;
+ 
     private float _moveSpeed = 5f;
+
+    public Vector3 KnockBackDirection { get; private set; }
+
 
     void Awake()
     {
        _defaultPlayerAction = new DefaultPlayerAction();
+        _fireReady = true;
     }
 
     private void OnEnable()
     {
         _moveAction = _defaultPlayerAction.Player.Move;
         _moveAction.Enable();
+        _fire = _defaultPlayerAction.Player.Fire;
+        _fire.Enable();
     }
 
     private void OnDisable()
     {
         _moveAction.Disable();
+        _fire.Disable();
     }
 
     private void FixedUpdate()
+    {
+        Mouvements();
+
+        _playerBody.transform.LookAt(_poi.transform);
+        Fire();
+        _playerBody.transform.rotation = Quaternion.Euler(0, _playerBody.transform.rotation.eulerAngles.y, _playerBody.transform.rotation.eulerAngles.z);
+    }
+
+    private void Mouvements()
     {
         // Get the camera's forward and right vectors
         Vector3 cameraForward = Camera.main.transform.forward;
@@ -47,8 +68,35 @@ public class Player : MonoBehaviour
 
         Vector2 MoveDir = _moveAction.ReadValue<Vector2>();
         Vector3 movement = cameraForward * MoveDir.y + cameraRight * MoveDir.x;
-        
-        gameObject.GetComponent<Rigidbody>().velocity = movement * _moveSpeed;
-        
+
+        KnockBackDirection = Vector3.Lerp(KnockBackDirection, Vector3.zero, Time.fixedDeltaTime)/2;
+
+        _rb.velocity = movement * _moveSpeed + KnockBackDirection;
+    }
+    public void Knockback(Vector3 dir)
+    {
+        KnockBackDirection = dir;
+    }
+
+    private void Fire()
+    {
+        float fire = _fire.ReadValue<float>();
+        if ( gameObject.GetComponent<Player>().mana >= 10)
+        {           
+            if (fire > 0 && _fireReady)
+            {
+                gameObject.GetComponent<Player>().mana -= 10;
+                GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
+                myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
+                StartCoroutine(FireCooldown());
+            }
+        }
+    }
+
+    IEnumerator FireCooldown()
+    {
+        _fireReady = false;
+        yield return new WaitForSeconds(0.5f);
+        _fireReady = true;
     }
 }

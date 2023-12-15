@@ -73,6 +73,10 @@ public class PlayerController : MonoBehaviour
         else if (MoveDir.y == 0)
             _playerAnimations.SetBool("Walk", false);
 
+        if (MoveDir.y < 0)
+            _playerAnimations.SetBool("Backward", true);
+        else if (MoveDir.y == 0)
+            _playerAnimations.SetBool("Backward", false);
 
         if (MoveDir.x > 0)
         {
@@ -92,15 +96,9 @@ public class PlayerController : MonoBehaviour
             _playerAnimations.SetBool("StrafeLeft", false);
         }
 
-
-
-
-
         Vector3 movement = cameraForward * MoveDir.y + cameraRight * MoveDir.x;
 
         gameObject.GetComponent<Rigidbody>().velocity = movement * _moveSpeed;
-
-  
     }
 
     private void Fire()

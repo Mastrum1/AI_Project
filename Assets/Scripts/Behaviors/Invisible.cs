@@ -1,22 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Attack : StateMachineBehaviour
+public class Invisible : StateMachineBehaviour
 {
-    private GameObject user;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        user = animator.gameObject;
+        animator.transform.GetChild(0).gameObject.SetActive(false);
     }
 
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // add damage amount to player
-    }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //
+        animator.transform.GetChild(0).gameObject.SetActive(true);
     }
 }

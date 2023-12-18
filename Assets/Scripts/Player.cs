@@ -60,6 +60,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+    }
+
     IEnumerator ManaRegen()
     {
         _manaRegen = true;

@@ -10,6 +10,11 @@ public class ProjectileScript : MonoBehaviour
 {
     private bool _isExploding;
     private bool _isDestroying;
+
+    [SerializeField] private CapsuleCollider _collider;
+    [SerializeField] private MeshRenderer _mesh;
+    [SerializeField] private Rigidbody _rb;
+
     [SerializeField] private GameObject _explosion;
     [SerializeField] private GameObject _vfx;
     [SerializeField] private GameObject _trail;
@@ -35,12 +40,11 @@ public class ProjectileScript : MonoBehaviour
             StartCoroutine(DestroyDoor(collision.gameObject));           
         }
 
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        _collider.enabled = false;
+        _mesh.enabled = false;
+        _rb.velocity = Vector3.zero;
         _explosion.SetActive(true);
-        if (!_isDestroying)
-            Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.5f);
 
     }
 
@@ -71,12 +75,12 @@ public class ProjectileScript : MonoBehaviour
     {
         if (door != null)
         {
-            door.GetComponent<Rigidbody>().isKinematic = false;
-            door.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 100f;
+            Rigidbody _doorRb = door.GetComponent<Rigidbody>();
+            _doorRb.isKinematic = false;
+            _doorRb.velocity = gameObject.transform.forward * 100f;
             door.transform.GetChild(0).gameObject.SetActive(false);
             door.GetComponent<Door>().isBurning = true;
             yield return new WaitForSeconds(2f);
-            door.GetComponent<Door>().ResetDoor();
             Destroy(door);
             Destroy(gameObject);
         }

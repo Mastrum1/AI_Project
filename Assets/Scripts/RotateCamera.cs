@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 public class RotateCamera : MonoBehaviour
 {
     private DefaultPlayerAction _defaultPlayerAction;
+    [SerializeField] private CinemachineFreeLook _camFreeLook;
 
     InputAction _middleClick;
     InputAction _Keyboard;
@@ -51,8 +52,8 @@ public class RotateCamera : MonoBehaviour
                 break;
         }
 
-        gameObject.GetComponent<CinemachineFreeLook>().m_XAxis.Value += _Keyboard.ReadValue<Vector2>().x*RotationStrengh;
+        _camFreeLook.m_XAxis.Value += _Keyboard.ReadValue<Vector2>().x*RotationStrengh;
         if (_isMiddleClickPressed)
-            gameObject.GetComponent<CinemachineFreeLook>().m_XAxis.Value += _deltaMouse.ReadValue<float>()/4;
+            _camFreeLook.m_XAxis.Value += _deltaMouse.ReadValue<float>()/4;
     }
 }

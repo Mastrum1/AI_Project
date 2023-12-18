@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class DebugLogNode : ActionNode
 {
-    public new string message = "Debug";
+    public string debugMessage = "Debug";
 
     protected override void OnStart()
     {
-        Debug.Log($"OnStart{message}");
+        Debug.Log($"OnStart{debugMessage}");
     }
     protected override void OnStop()
     {
-        Debug.Log($"OnStop{message}");
+        Debug.Log($"OnStop{debugMessage}");
     }
 
     protected override State OnUpdate()
     {
-        Debug.Log($"OnUpdate{message}");
+        Debug.Log($"OnUpdate{debugMessage}");
         return State.Success;
     }
 }

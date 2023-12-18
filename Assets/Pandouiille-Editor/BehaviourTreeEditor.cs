@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.Callbacks;
 
 public class BehaviourTreeEditor : EditorWindow
 {
@@ -13,6 +14,18 @@ public class BehaviourTreeEditor : EditorWindow
     {
         BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();
         wnd.titleContent = new GUIContent("BehaviourTreeEditor");
+    }
+
+    [OnOpenAsset]
+    public static bool OnOpenAsset(int instanceID, int line)
+    {
+        BehaviourTree tree = EditorUtility.InstanceIDToObject(instanceID) as BehaviourTree;
+        if (tree)
+        {
+            OpenWindow();
+            return true;
+        }
+        return false;
     }
 
     public void CreateGUI()
@@ -38,7 +51,7 @@ public class BehaviourTreeEditor : EditorWindow
     private void OnSelectionChange()
     {
         BehaviourTree tree = Selection.activeObject as BehaviourTree;
-        if (tree) 
+        if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) 
         { 
             treeView.PopulateView(tree);
         }

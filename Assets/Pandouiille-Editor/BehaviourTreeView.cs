@@ -40,6 +40,12 @@ public class BehaviourTreeView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
+        if (tree.rootNode == null)
+        {
+            tree.rootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
+            EditorUtility.SetDirty(tree);
+            AssetDatabase.SaveAssets();
+        }
 
         //Create nodes view
         tree.Nodes.ForEach(n => CreateNodeView(n));
@@ -133,8 +139,10 @@ public class BehaviourTreeView : GraphView
 
     void CreateNodeView(Node node)
     {
-        NodeView nodeView = new (node);
-        nodeView.OnNodeSelected = OnNodeSelected;
+        NodeView nodeView = new(node)
+        {
+            OnNodeSelected = OnNodeSelected
+        };
         AddElement(nodeView);
     }
 

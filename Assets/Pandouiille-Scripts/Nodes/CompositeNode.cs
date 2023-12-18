@@ -19,4 +19,10 @@ public class CompositeNode : Node
     {
         return State.Running;
     }
+    public override Node Clone()
+    {
+        CompositeNode node = Instantiate(this);
+        node.children = children.ConvertAll(c => c.Clone());
+        return node;
+    }
 }

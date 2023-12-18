@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecoratorNode : Node
+public class RootNode : Node
 {
-    [HideInInspector] public Node child;
+    public Node child;
     protected override void OnStart()
     {
     }
+
     protected override void OnStop()
     {
     }
 
     protected override State OnUpdate()
     {
-        State state = child.Update();
-        return state;
+        return child.Update();
     }
 
     public override Node Clone()
     {
-        DecoratorNode node = Instantiate(this);
+        RootNode node = Instantiate(this);
         node.child = child.Clone();
         return node;
     }
+
 }

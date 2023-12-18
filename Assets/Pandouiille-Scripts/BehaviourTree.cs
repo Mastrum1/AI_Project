@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(fileName = "New Behaviour", menuName = "BehaviourTree/Behaviour")]
+[CreateAssetMenu()]
 public class BehaviourTree : ScriptableObject
 {
     public Node rootNode;
@@ -46,6 +46,12 @@ public class BehaviourTree : ScriptableObject
             decorator.child = child;
         }
 
+        RootNode root = parent as RootNode;
+        if (root)
+        {
+            root.child = child;
+        }
+
         CompositeNode composite = parent as CompositeNode;
         if(composite)
         {
@@ -59,6 +65,12 @@ public class BehaviourTree : ScriptableObject
         if (decorator)
         {
             decorator.child = null;
+        }
+
+        RootNode root = parent as RootNode;
+        if (root)
+        {
+            root.child = null;
         }
 
         CompositeNode composite = parent as CompositeNode;
@@ -78,6 +90,12 @@ public class BehaviourTree : ScriptableObject
             children.Add(decorator.child);
         }
 
+        RootNode root = parent as RootNode;
+        if (root && root.child != null)
+        {
+            children.Add(root.child);
+        }
+
         CompositeNode composite = parent as CompositeNode;
         if (composite)
         {
@@ -85,5 +103,13 @@ public class BehaviourTree : ScriptableObject
         }
 
         return children;
+    }
+
+    public BehaviourTree Clone()
+    {
+        BehaviourTree tree = Instantiate(this);
+        tree.rootNode = tree.rootNode.Clone();
+        tree.Nodes = Nodes.ConvertAll(n => n.Clone());
+        return tree;
     }
 }

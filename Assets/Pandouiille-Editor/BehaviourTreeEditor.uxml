@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Pandouiille-Editor/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=1bd987a7e6c2b3f4fbd310fefb0e12a1&amp;type=3#BehaviourTreeEditor" />
+    <Style src="project://database/Assets/Pandouiille-Editor/NodeViewStyleShet.uss?fileID=7433441132597879392&amp;guid=97a05a48e6a4f654a8496c29eb962ff3&amp;type=3#NodeViewStyleShet" />
     <uie:Toolbar style="height: 21px;">
         <uie:ToolbarMenu tabindex="-1" display-tooltip-when-elided="true" text="Assets" style="flex-grow: 0;" />
     </uie:Toolbar>

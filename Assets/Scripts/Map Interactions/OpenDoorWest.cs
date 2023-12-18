@@ -16,9 +16,9 @@ public class DoorScript : MonoBehaviour
        
     }
 
-    private void OnTriggerEnter(Collider colision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (colision.tag == "Player")
+        if (collision.tag == "Player")
         {
             //ChangeTargetObjectPosition();
             StartCoroutine(IncreaseRotation());

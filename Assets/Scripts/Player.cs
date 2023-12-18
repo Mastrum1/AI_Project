@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     private bool _manaRegen = false;
     private bool _HealRegen = false;
     public bool CursedMod = false;
-
+    public int CountKey = 0;
+    public int Keys { get { return CountKey; } set { CountKey = value; } }
     [SerializeField] private GameObject UI;
     private Image health;
 

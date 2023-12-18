@@ -12,10 +12,11 @@ public abstract class Node :ScriptableObject
         Failure
     }
 
-    public State state = State.Running;
-    public bool isStarted = false;
+    [HideInInspector] public State state = State.Running;
+    [HideInInspector] public bool isStarted = false;
+    [HideInInspector] public string guid;
+    [HideInInspector] public Vector2 position;
 
-    public string guid;
     public State Update()
     {
         if(!isStarted)

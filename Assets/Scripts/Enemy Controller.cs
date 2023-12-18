@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float HP;
     [NonSerialized] public float savedTime;
     [NonSerialized] public Vector3 originalPos;
+    [SerializeField] public Animator Minion;
 
     private Animator animator;
     private float currentHP;

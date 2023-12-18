@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,7 +14,6 @@ public class Wander : StateMachineBehaviour
     private GameObject user;
     private Vector3 randDestination;
     private bool flag;
-    private bool inspecting;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.gameObject.GetComponent<EnemyController>().agent;
@@ -25,15 +23,10 @@ public class Wander : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (agent.hasPath == false && flag == false && inspecting == false)
+        if (agent.hasPath == false && flag == false)
         {
             flag = true;
             SetRandomDestination();
-        }
-
-        if (inspecting == true)
-        {
-            InspectSuroundings();
         }
     }
 
@@ -42,20 +35,18 @@ public class Wander : StateMachineBehaviour
         do
         {
             float minX = floorBounds.size.x * -0.5f;
-            float minY = floorBounds.size.y * -0.5f;
             float minZ = floorBounds.size.z * -0.5f;
 
-            var randomPoint = this.user.transform.TransformPoint(
-                new Vector3(Random.Range(minX, -minX), Random.Range(minY, -minY), Random.Range(minZ, -minZ)));
+            randDestination = user.transform.TransformPoint(new Vector3(Random.Range(minX, -minX), 
+                user.transform.position.y, Random.Range(minZ, -minZ)));
 
-            agent.SetDestination(randomPoint);
-
-            //pole.transform.position = new Vector3(randomPoint.x, user.transform.position.y, randomPoint.z);
+            Debug.Log("rand:" + randDestination);
         }
         while (CheckIfOnNav());
 
+        agent.SetDestination(randDestination);
+
         flag = false;
-        //inspecting = true;
     }
 
     private bool CheckIfOnNav()
@@ -65,13 +56,5 @@ public class Wander : StateMachineBehaviour
             return false;
         }
         return true;
-    }
-
-    private void InspectSuroundings()
-    {
-        Quaternion myRot = user.transform.rotation;
-        myRot.x += 20;// ta valeur calculé
-
-        user.transform.rotation = myRot;
     }
 }

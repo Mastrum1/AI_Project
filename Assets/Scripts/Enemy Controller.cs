@@ -18,7 +18,8 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
     private float currentHP;
-    private bool called;    
+    private bool calledInvis;
+    private bool calledInspec;
 
     Ray[] ray;
     RaycastHit hit;
@@ -46,7 +47,7 @@ public class EnemyController : MonoBehaviour
 
         CheckIfRetreating();
         
-        if (!called)
+        if (!calledInvis)
         {
             StartCoroutine(CheckIfInvisible());
         }
@@ -146,7 +147,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckIfInvisible()
     {
-        called = true;
+        calledInvis = true;
 
         yield return new WaitForSeconds(10f);
 
@@ -161,6 +162,27 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsInvisible", false);
 
-        called = false;
+        calledInvis = false;
+    }
+
+    private void ChekInspecting()
+    {
+        if (!calledInspec)
+        {
+            StartCoroutine(Inspecting());
+        }
+    }
+
+    IEnumerator Inspecting()
+    {
+        calledInspec = true;
+
+        animator.SetBool("IsInspecting", true);
+
+        yield return new WaitForSeconds(4f);
+
+        animator.SetBool("IsInspecting", false);
+
+        calledInspec = false;
     }
 }

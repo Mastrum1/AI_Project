@@ -33,8 +33,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        savedTime += Time.deltaTime;
-
         CheckIfDead();
 
         CreateFieldOfView();
@@ -44,11 +42,32 @@ public class EnemyController : MonoBehaviour
         CheckStartPos();
 
         CheckIfInRange();
-        
+
+        CheckIfRetreating();
+
+        CheckIfInvisible();
+    }
+
+    private void CreateFieldOfView()
+    {
+        ray = new Ray[2];
+
+        ray[0] = new Ray(transform.position, transform.forward);
+
+        for (int i = 1; i < ray.Length; i++)
+        {
+            float rand = UnityEngine.Random.Range(-fovAngle, fovAngle);
+
+            ray[i] = new Ray(Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, transform.forward);
+
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, Color.red);
+        }
     }
 
     private void CheckRayHit()
     {
+        savedTime += Time.deltaTime;
+
         for (int i = 0; i < ray.Length - 1; i++)
         {
             if (Physics.Raycast(ray[i], out hit, 20))
@@ -65,22 +84,6 @@ public class EnemyController : MonoBehaviour
             {
                 animator.SetBool("IsDetected", false);
             }
-        }
-    }
-
-    private void CreateFieldOfView()
-    {
-        ray = new Ray[2];
-
-        ray[0] = new Ray(transform.position, transform.forward);
-
-        for (int i = 1; i < ray.Length; i++)
-        {
-            float rand = UnityEngine.Random.Range(-fovAngle, fovAngle);
-
-            ray[i] = new Ray(Quaternion.AngleAxis((rand/2), transform.up) * transform.forward, transform.forward);
-
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, Color.red);
         }
     }
 
@@ -121,5 +124,29 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("IsDead", false);
         }
+    }
+
+    private void CheckIfRetreating()
+    {
+        if (currentHP <= (HP/2))
+        {
+            animator.SetBool("IsRetreating", true);
+        }
+        else
+        {
+            animator.SetBool("IsRetreating", false);
+        }
+    }
+
+    private void CheckIfInvisible()
+    {
+        /*if (currentHP <= (HP / 2))
+        {
+            animator.SetBool("IsInvisible", true);
+        }
+        else
+        {
+            animator.SetBool("IsInvisible", false);
+        }*/
     }
 }

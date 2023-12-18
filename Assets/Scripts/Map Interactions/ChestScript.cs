@@ -22,8 +22,8 @@ public class ChestScript : MonoBehaviour
         if (collision.tag == "Player")
         {
             StartCoroutine(IncreaseRotation());
-/*            collision.GetComponent<Player>().CountKey++;
-*/        }
+            collision.GetComponent<Player>().CountKey++;
+       }
     }
 
     private IEnumerator IncreaseRotation()

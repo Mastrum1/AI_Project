@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
     private float currentHP;
+    private bool called;    
 
     Ray[] ray;
     RaycastHit hit;
@@ -44,8 +45,11 @@ public class EnemyController : MonoBehaviour
         CheckIfInRange();
 
         CheckIfRetreating();
-
-        CheckIfInvisible();
+        
+        if (!called)
+        {
+            StartCoroutine(CheckIfInvisible());
+        }
     }
 
     private void CreateFieldOfView()
@@ -70,6 +74,8 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < ray.Length - 1; i++)
         {
+            
+
             if (Physics.Raycast(ray[i], out hit, 20))
             {
                 if (hit.transform.gameObject.tag == "Player")
@@ -138,15 +144,23 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void CheckIfInvisible()
+    IEnumerator CheckIfInvisible()
     {
-        /*if (currentHP <= (HP / 2))
-        {
-            animator.SetBool("IsInvisible", true);
-        }
-        else
-        {
-            animator.SetBool("IsInvisible", false);
-        }*/
+        called = true;
+
+        yield return new WaitForSeconds(10f);
+
+        StartCoroutine(IsInvisible());
+    }
+
+    IEnumerator IsInvisible()
+    {
+        animator.SetBool("IsInvisible", true);
+
+        yield return new WaitForSeconds(3f);
+
+        animator.SetBool("IsInvisible", false);
+
+        called = false;
     }
 }

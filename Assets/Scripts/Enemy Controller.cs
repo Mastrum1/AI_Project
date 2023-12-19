@@ -13,13 +13,19 @@ public class EnemyController : MonoBehaviour
     public float detectionTime;
     [SerializeField] float fovAngle;
     [SerializeField] float HP;
+    [SerializeField] private Player _playerManager;
     [NonSerialized] public float savedTime;
     [NonSerialized] public Vector3 originalPos;
     [SerializeField] public Animator minion;
 
+    [SerializeField] private float _attackDelay;
+    [SerializeField] private float _damage;
+
+    private bool _isAttacking = false;
     private Animator animator;
     private float currentHP;
-    private bool called;    
+    private bool calledInvis;
+    private bool calledInspec;
 
     Ray[] ray;
     RaycastHit hit;
@@ -35,22 +41,30 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Attack.OnAttack += Attacking;
+
         CheckIfDead();
 
         CreateFieldOfView();
 
         CheckRayHit();
 
-        CheckStartPos();
-
         CheckIfInRange();
 
-        CheckIfRetreating();
-        
-        if (!called)
+        if (gameObject.tag == "Skeleton")
         {
-            StartCoroutine(CheckIfInvisible());
+            CheckStartPos();
         }
+
+        if (gameObject.tag == "Assassin")
+        {
+            CheckIfRetreating();
+
+            if (!calledInvis)
+            {
+                StartCoroutine(CheckIfInvisible());
+            }
+        } 
     }
 
     private void CreateFieldOfView()
@@ -148,9 +162,19 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void Attacking()
+    {
+        if (!_isAttacking)
+        {
+            _isAttacking = true;
+
+            StartCoroutine(AttackDelay());
+        }
+    }
+
     IEnumerator CheckIfInvisible()
     {
-        called = true;
+        calledInvis = true;
 
         yield return new WaitForSeconds(10f);
 
@@ -165,8 +189,9 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsInvisible", false);
 
-        called = false;
+        calledInvis = false;
     }
+
 
     IEnumerator ChooseAttack()
     {
@@ -186,4 +211,36 @@ public class EnemyController : MonoBehaviour
 
 
     }
+}
+
+    private void ChekInspecting()
+    {
+        if (!calledInspec)
+        {
+            StartCoroutine(Inspecting());
+        }
+    }
+
+    IEnumerator Inspecting()
+    {
+        calledInspec = true;
+
+        animator.SetBool("IsInspecting", true);
+
+        yield return new WaitForSeconds(4f);
+
+        animator.SetBool("IsInspecting", false);
+
+        calledInspec = false;
+    }
+
+    IEnumerator AttackDelay()
+    {
+        if (_playerManager != null)
+        {
+            _playerManager.TakeDamage(_damage);
+        }
+        yield return new WaitForSeconds(_attackDelay);
+        _isAttacking = false;
+    }   
 }

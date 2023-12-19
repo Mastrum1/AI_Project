@@ -33,8 +33,12 @@ public class BehaviourTree : ScriptableObject
 
     public void DeleteNode(Node node)
     {
+        Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
         Nodes.Remove(node);
+
         AssetDatabase.RemoveObjectFromAsset(node);
+        Undo.DestroyObjectImmediate(node);
+
         AssetDatabase.SaveAssets();
     }
 

@@ -12,8 +12,8 @@ public abstract class Node :ScriptableObject
         Failure
     }
 
-     public State state = State.Running;
-     public bool isStarted = false;
+     [HideInInspector] public State state = State.Running;
+     [HideInInspector] public bool isStarted = false;
      public string guid;
      public Vector2 position;
 

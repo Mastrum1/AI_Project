@@ -6,7 +6,7 @@ public class ExplosionDamages : MonoBehaviour
 {
     [SerializeField] private SphereCollider _area;
     private float _maxRadius = 0f;
-    private bool _playertouched = false;
+    //private bool _playertouched = false;
 
     // Start is called before the first frame update
     void Start()

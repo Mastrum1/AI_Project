@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
        _defaultPlayerAction = new DefaultPlayerAction();
-       _fireReady = true;
+       //_fireReady = true;
     }
 
     private void OnEnable()

@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float HP;
     [NonSerialized] public float savedTime;
     [NonSerialized] public Vector3 originalPos;
-    [SerializeField] public Animator Minion;
+    [SerializeField] public Animator minion;
 
     private Animator animator;
     private float currentHP;
@@ -85,11 +85,13 @@ public class EnemyController : MonoBehaviour
                     savedTime = 0;
 
                     animator.SetBool("IsDetected", true);
+                    minion.SetBool("Walking", true);
                 }
             }
             else
             {
                 animator.SetBool("IsDetected", false);
+                minion.SetBool("Walking", false);
             }
         }
     }
@@ -114,6 +116,7 @@ public class EnemyController : MonoBehaviour
         if (animator.GetFloat("DistanceFromPlayer") < 2)
         {
             animator.SetBool("IsInRange", true);
+            StartCoroutine(ChooseAttack());
         }
         else
         {
@@ -163,5 +166,23 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("IsInvisible", false);
 
         called = false;
+    }
+
+    IEnumerator ChooseAttack()
+    {
+        minion.SetBool("Attack", true);
+
+            int rndm = UnityEngine.Random.Range(1, 3);
+            if (rndm == 1)
+                minion.SetInteger("Choose Attack", 1);
+            if (rndm == 2)
+                minion.SetInteger("Choose Attack", 2);
+            if (rndm == 3)
+                minion.SetInteger("Choose Attack", 3);
+
+        yield return new WaitForSeconds(5f);
+
+        minion.SetBool("Attack", false);
+
     }
 }

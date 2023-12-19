@@ -7,9 +7,9 @@ using Unity.VisualScripting;
 
 public class ChasePlayer : StateMachineBehaviour
 {
-    GameObject player;
-    NavMeshAgent agent;
-    GameObject user;
+    private GameObject player;
+    private GameObject user;
+    private NavMeshAgent agent;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         user = animator.gameObject;

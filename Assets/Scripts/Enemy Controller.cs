@@ -183,7 +183,10 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator AttackDelay()
     {
-        _playerManager.TakeDamage(_damage);
+        if (_playerManager != null)
+        {
+            _playerManager.TakeDamage(_damage);
+        }
         yield return new WaitForSeconds(_attackDelay);
         _isAttacking = false;
     }   

@@ -17292,7 +17292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414864280}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.52573115, y: 0.000000012798009, z: -0.0000000079096045, w: 0.85065085}
+  m_LocalRotation: {x: 0.52573115, y: -0.00000006722504, z: 0.00000004154736, w: 0.85065085}
   m_LocalPosition: {x: 13.0516615, y: 28.354, z: 24.344322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58723,7 +58723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277270007}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25276524, y: -0.0024276034, z: 0.0025769367, w: 0.9675212}
+  m_LocalRotation: {x: 0.25276524, y: -0.0024275507, z: 0.0025768806, w: 0.9675212}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -80005,7 +80005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717400301}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27032208, y: -0.002380301, z: 0.0026206367, w: 0.9627635}
+  m_LocalRotation: {x: 0.27032205, y: -0.0023803373, z: 0.0026206763, w: 0.9627634}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -96792,14 +96792,29 @@ PrefabInstance:
       objectReference: {fileID: 1152300113}
     - target: {fileID: 6208191645109046944, guid: 8c16fb636cee9484e989b723c5d59899,
         type: 3}
+      propertyPath: _damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208191645109046944, guid: 8c16fb636cee9484e989b723c5d59899,
+        type: 3}
       propertyPath: fovAngle
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208191645109046944, guid: 8c16fb636cee9484e989b723c5d59899,
+        type: 3}
+      propertyPath: _attackDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208191645109046944, guid: 8c16fb636cee9484e989b723c5d59899,
         type: 3}
       propertyPath: detectionTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6208191645109046944, guid: 8c16fb636cee9484e989b723c5d59899,
+        type: 3}
+      propertyPath: _playerManager
+      value: 
+      objectReference: {fileID: 1382890913}
     - target: {fileID: 6296077531579998232, guid: 8c16fb636cee9484e989b723c5d59899,
         type: 3}
       propertyPath: m_LocalPosition.x

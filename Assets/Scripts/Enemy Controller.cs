@@ -41,16 +41,22 @@ public class EnemyController : MonoBehaviour
 
         CheckRayHit();
 
-        CheckStartPos();
-
         CheckIfInRange();
 
-        CheckIfRetreating();
-        
-        if (!calledInvis)
+        if (gameObject.tag == "Skeleton")
         {
-            StartCoroutine(CheckIfInvisible());
+            CheckStartPos();
         }
+
+        if (gameObject.tag == "Assassin")
+        {
+            CheckIfRetreating();
+
+            if (!calledInvis)
+            {
+                StartCoroutine(CheckIfInvisible());
+            }
+        } 
     }
 
     private void CreateFieldOfView()

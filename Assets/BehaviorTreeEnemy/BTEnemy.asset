@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8390480866238966618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900de9a5a7a434f45bc25b1d2c8005e5, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 778e9f7dbe684094b8773dbd3352d34d
+  position: {x: 0, y: 0}
+  actionNodeMessage: Action
+  duration: 5
 --- !u!114 &-8342181110631363487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +33,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: aa8837bd13c377d449ba47726417b69f
-  position: {x: 0, y: 0}
+  position: {x: -89, y: 282}
   actionNodeMessage: Action
   debugMessage: Debug
 --- !u!114 &-6348456667160935869
@@ -33,7 +51,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 9801f168975620446b04062ace736e7b
-  position: {x: 0, y: 0}
+  position: {x: 189, y: 259}
   actionNodeMessage: Action
   debugMessage: Debug
 --- !u!114 &11400000
@@ -55,6 +73,7 @@ MonoBehaviour:
   - {fileID: 384358619406264205}
   - {fileID: -8342181110631363487}
   - {fileID: -6348456667160935869}
+  - {fileID: -8390480866238966618}
 --- !u!114 &384358619406264205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +90,9 @@ MonoBehaviour:
   isStarted: 0
   guid: 1a19861822ce8ba41b07214f64ee6664
   position: {x: 16.750008, y: 140.15001}
-  children: []
+  children:
+  - {fileID: -8342181110631363487}
+  - {fileID: -6348456667160935869}
 --- !u!114 &1582334012456532933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,5 +108,5 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: ca616b9165d45814ebea18f06ca6dfc0
-  position: {x: 35, y: 19}
+  position: {x: -114, y: -15}
   child: {fileID: 384358619406264205}

@@ -152,10 +152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  agent: {fileID: 0}
-  detectionTime: 0
-  fovAngle: 0
-  HP: 0
 --- !u!195 &8827983798015304169
 NavMeshAgent:
   m_ObjectHideFlags: 0

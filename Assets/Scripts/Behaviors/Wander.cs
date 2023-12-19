@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,27 +14,26 @@ public class Wander : StateMachineBehaviour
     private NavMeshAgent agent;
     private GameObject user;
     private Vector3 randDestination;
-    float time;
+    private bool flag;
+    private bool inspecting;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.gameObject.GetComponent<EnemyController>().agent;
         floorBounds = areaBound.GetComponent<MeshRenderer>().bounds;
         user = animator.gameObject;
-
-        if (agent.hasPath == false)
-        {
-            SetRandomDestination();
-        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        time += Time.deltaTime;
-
-        if (agent.hasPath == false && time > 1.5)
+        if (agent.hasPath == false && flag == false && inspecting == false)
         {
-            time = 0;
-            animator.SetBool("IsInspecting", true);
+            flag = true;
+            SetRandomDestination();
+        }
+
+        if (inspecting == true)
+        {
+            InspectSuroundings();
         }
     }
 
@@ -41,17 +41,21 @@ public class Wander : StateMachineBehaviour
     {
         do
         {
-            float X = Random.Range(floorBounds.min.x, floorBounds.max.x);
-            float Z = Random.Range(floorBounds.min.z, floorBounds.max.z);
+            float minX = floorBounds.size.x * -0.5f;
+            float minY = floorBounds.size.y * -0.5f;
+            float minZ = floorBounds.size.z * -0.5f;
 
-            randDestination = user.transform.TransformPoint(new Vector3( X,
-                user.transform.position.y, Z));
+            var randomPoint = this.user.transform.TransformPoint(
+                new Vector3(Random.Range(minX, -minX), Random.Range(minY, -minY), Random.Range(minZ, -minZ)));
 
-            agent.SetDestination(randDestination);
+            agent.SetDestination(randomPoint);
 
-            Debug.Log("rand:" + randDestination);
+            //pole.transform.position = new Vector3(randomPoint.x, user.transform.position.y, randomPoint.z);
+        }
+        while (CheckIfOnNav());
 
-        } while (CheckIfOnNav());
+        flag = false;
+        //inspecting = true;
     }
 
     private bool CheckIfOnNav()
@@ -61,5 +65,13 @@ public class Wander : StateMachineBehaviour
             return false;
         }
         return true;
+    }
+
+    private void InspectSuroundings()
+    {
+        Quaternion myRot = user.transform.rotation;
+        myRot.x += 20;// ta valeur calculé
+
+        user.transform.rotation = myRot;
     }
 }

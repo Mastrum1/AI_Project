@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5104735345260017544}
   - component: {fileID: -603959140683706556}
   - component: {fileID: 2655329830243120187}
-  - component: {fileID: 4288392208066171744}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -151,22 +150,6 @@ MonoBehaviour:
   mesh: {fileID: 5643090492188231527}
   VanishValue: -1
   isBurning: 0
---- !u!114 &4288392208066171744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865133558273716435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Size: {x: 4, y: 3, z: 4}
-  m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 0
-  m_AffectedAgents: 00000000
 --- !u!1 &5927251460681829980
 GameObject:
   m_ObjectHideFlags: 0

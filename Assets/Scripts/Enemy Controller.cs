@@ -13,9 +13,14 @@ public class EnemyController : MonoBehaviour
     public float detectionTime;
     [SerializeField] float fovAngle;
     [SerializeField] float HP;
+    [SerializeField] private Player _playerManager;
     [NonSerialized] public float savedTime;
     [NonSerialized] public Vector3 originalPos;
 
+    [SerializeField] private float _attackDelay;
+    [SerializeField] private float _damage;
+
+    private bool _isAttacking = false;
     private Animator animator;
     private float currentHP;
     private bool calledInvis;
@@ -35,6 +40,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Attack.OnAttack += Attacking;
+
         CheckIfDead();
 
         CreateFieldOfView();
@@ -151,6 +158,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void Attacking()
+    {
+        if (!_isAttacking)
+        {
+            _isAttacking = true;
+
+            StartCoroutine(AttackDelay());
+        }
+    }
+
     IEnumerator CheckIfInvisible()
     {
         calledInvis = true;
@@ -191,4 +208,11 @@ public class EnemyController : MonoBehaviour
 
         calledInspec = false;
     }
+
+    IEnumerator AttackDelay()
+    {
+        _playerManager.TakeDamage(_damage);
+        yield return new WaitForSeconds(_attackDelay);
+        _isAttacking = false;
+    }   
 }

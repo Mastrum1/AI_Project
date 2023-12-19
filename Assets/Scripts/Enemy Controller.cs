@@ -172,7 +172,7 @@ public class EnemyController : MonoBehaviour
     {
         minion.SetBool("Attack", true);
 
-            int rndm = UnityEngine.Random.Range(1, 3);
+            int rndm = UnityEngine.Random.Range(1, 4);
             if (rndm == 1)
                 minion.SetInteger("Choose Attack", 1);
             if (rndm == 2)
@@ -183,6 +183,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         minion.SetBool("Attack", false);
+
 
     }
 }

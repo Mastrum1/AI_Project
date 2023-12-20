@@ -57,7 +57,7 @@ public class BehaviourTreeEditor : EditorWindow
         }
     }
 
-    void OnNodeSelectionChanged(NodeView node)
+    internal void OnNodeSelectionChanged(NodeView node)
     {
         inspectorView.UpdateSelection(node);
     }

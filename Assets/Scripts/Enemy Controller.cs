@@ -23,7 +23,8 @@ public class EnemyController : MonoBehaviour
     private bool _isAttacking = false;
     private Animator animator;
     private float currentHP;
-    private bool called;    
+    private bool calledInvis;
+    private bool calledInspec;
 
     Ray[] ray;
     RaycastHit hit;
@@ -47,16 +48,22 @@ public class EnemyController : MonoBehaviour
 
         CheckRayHit();
 
-        CheckStartPos();
-
         CheckIfInRange();
 
-        CheckIfRetreating();
-        
-        if (!called)
+        if (gameObject.tag == "Skeleton")
         {
-            StartCoroutine(CheckIfInvisible());
+            CheckStartPos();
         }
+
+        if (gameObject.tag == "Assassin")
+        {
+            CheckIfRetreating();
+
+            if (!calledInvis)
+            {
+                StartCoroutine(CheckIfInvisible());
+            }
+        } 
     }
 
     private void CreateFieldOfView()
@@ -163,7 +170,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckIfInvisible()
     {
-        called = true;
+        calledInvis = true;
 
         yield return new WaitForSeconds(10f);
 
@@ -178,12 +185,36 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsInvisible", false);
 
-        called = false;
+        calledInvis = false;
+    }
+
+    private void ChekInspecting()
+    {
+        if (!calledInspec)
+        {
+            StartCoroutine(Inspecting());
+        }
+    }
+
+    IEnumerator Inspecting()
+    {
+        calledInspec = true;
+
+        animator.SetBool("IsInspecting", true);
+
+        yield return new WaitForSeconds(4f);
+
+        animator.SetBool("IsInspecting", false);
+
+        calledInspec = false;
     }
 
     IEnumerator AttackDelay()
     {
-        _playerManager.TakeDamage(_damage);
+        if (_playerManager != null)
+        {
+            _playerManager.TakeDamage(_damage);
+        }
         yield return new WaitForSeconds(_attackDelay);
         _isAttacking = false;
     }   

@@ -1,8 +1,12 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.Mathematics;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -16,6 +20,10 @@ public class Player : MonoBehaviour
     public bool CursedMod = false;
 
     [SerializeField] private GameObject UI;
+    [SerializeField] private Volume globalVolume;
+    [SerializeField] private CinemachineFreeLook _cam;
+    private ChromaticAberration ca;
+    CinemachineBasicMultiChannelPerlin _noise;
     private Image health;
 
     // Start is called before the first frame update
@@ -23,7 +31,10 @@ public class Player : MonoBehaviour
     {
         _maxHp = hp;
         _maxMana = mana;
-       health = UI.GetComponent<Image>();
+        health = UI.GetComponent<Image>();
+        globalVolume.profile.TryGet<ChromaticAberration>(out ca);
+
+        _noise = _cam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Update is called once per frame
@@ -38,11 +49,13 @@ public class Player : MonoBehaviour
             hp = 0;
         }
             
-        float hpLossPercent = 1 - (hp / _maxHp);
-        if (hpLossPercent > 0.5f)
+        float _hpLossPercent = 1 - (hp / _maxHp);
+        ca.intensity.value = _hpLossPercent;
+
+        if (_hpLossPercent > 0.5f)
         {
             var tempColor = health.color;
-            tempColor.a = hpLossPercent;
+            tempColor.a = _hpLossPercent;
             health.color = tempColor;
         }
 
@@ -63,6 +76,14 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hp -= damage;
+        StartCoroutine(Shake(.3f));
+    }
+
+    IEnumerator Shake(float time)
+    {
+        _noise.m_AmplitudeGain = 1;
+        yield return new WaitForSeconds(time);
+        _noise.m_AmplitudeGain = 0;
     }
 
     IEnumerator ManaRegen()

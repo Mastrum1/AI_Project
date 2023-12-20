@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9f8efe7275b664ab0d25c9f61f5780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaBound: {fileID: 7679324087800822384, guid: 660c84a0393b08246af119a97188fe8f,
+  surface: {fileID: -4404225818897319689, guid: 0a212e1143a14864bafb4e5e51e3eb83,
     type: 3}
 --- !u!1102 &8455375579768960656
 AnimatorState:

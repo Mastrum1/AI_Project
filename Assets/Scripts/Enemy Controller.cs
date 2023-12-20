@@ -171,7 +171,6 @@ public class EnemyController : MonoBehaviour
     IEnumerator ChooseAttack()
     {
         minion.SetBool("Attack", true);
-
             int rndm = UnityEngine.Random.Range(1, 4);
             if (rndm == 1)
                 minion.SetInteger("Choose Attack", 1);
@@ -179,11 +178,18 @@ public class EnemyController : MonoBehaviour
                 minion.SetInteger("Choose Attack", 2);
             if (rndm == 3)
                 minion.SetInteger("Choose Attack", 3);
-
         yield return new WaitForSeconds(5f);
-
         minion.SetBool("Attack", false);
-
-
+        
     }
+    IEnumerator AttackDelay()
+    {
+        if (_playerManager != null)
+        {
+            _playerManager.TakeDamage(_damage);
+        }
+        yield return new WaitForSeconds(_attackDelay);
+        _isAttacking = false;
+    } 
+      
 }

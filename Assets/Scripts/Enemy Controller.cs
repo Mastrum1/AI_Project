@@ -188,27 +188,6 @@ public class EnemyController : MonoBehaviour
         calledInvis = false;
     }
 
-    private void ChekInspecting()
-    {
-        if (!calledInspec)
-        {
-            StartCoroutine(Inspecting());
-        }
-    }
-
-    IEnumerator Inspecting()
-    {
-        calledInspec = true;
-
-        animator.SetBool("IsInspecting", true);
-
-        yield return new WaitForSeconds(4f);
-
-        animator.SetBool("IsInspecting", false);
-
-        calledInspec = false;
-    }
-
     IEnumerator AttackDelay()
     {
         if (_playerManager != null)

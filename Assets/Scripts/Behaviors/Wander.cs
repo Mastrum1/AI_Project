@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,32 +9,26 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Wander : StateMachineBehaviour
 {
-    [SerializeField] private GameObject areaBound;
+    [SerializeField] private NavMeshSurface surface;
 
-    private Bounds floorBounds;
+    private NavMeshData surfaceData;
     private NavMeshAgent agent;
     private GameObject user;
     private Vector3 randDestination;
-    float time;
+    private bool finished;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.gameObject.GetComponent<EnemyController>().agent;
-        floorBounds = areaBound.GetComponent<MeshRenderer>().bounds;
+        surfaceData = surface.navMeshData;
         user = animator.gameObject;
-
-        if (agent.hasPath == false)
-        {
-            SetRandomDestination();
-        }
+        finished = false;
+        SetRandomDestination();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        time += Time.deltaTime;
-
-        if (agent.hasPath == false && time > 1.5)
+        if (agent.hasPath == false && finished == true)
         {
-            time = 0;
             animator.SetBool("IsInspecting", true);
         }
     }
@@ -41,17 +37,16 @@ public class Wander : StateMachineBehaviour
     {
         do
         {
-            float X = Random.Range(floorBounds.min.x, floorBounds.max.x);
-            float Z = Random.Range(floorBounds.min.z, floorBounds.max.z);
+            float X = Random.Range(surfaceData.sourceBounds.min.x, surfaceData.sourceBounds.max.x);
+            float Z = Random.Range(surfaceData.sourceBounds.min.z, surfaceData.sourceBounds.max.z);
 
-            randDestination = user.transform.TransformPoint(new Vector3( X,
-                user.transform.position.y, Z));
+            randDestination = user.transform.TransformPoint(new Vector3(X, user.transform.position.y, Z));
 
             agent.SetDestination(randDestination);
 
-            Debug.Log("rand:" + randDestination);
-
         } while (CheckIfOnNav());
+
+        finished = true;
     }
 
     private bool CheckIfOnNav()

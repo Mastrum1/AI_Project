@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public int CountKey;
     private float _maxHp;
     public float hp;
     private float _maxMana;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        CountKey = 0;
         _maxHp = hp;
         _maxMana = mana;
         health = UI.GetComponent<Image>();

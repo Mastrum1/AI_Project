@@ -1071,6 +1071,7 @@ MonoBehaviour:
   surface: {fileID: -5177888611787307735, guid: 3b5ad151edcbec141b89ab14e43b8e8a,
     type: 3}
   surface: {fileID: 6715575418379219191, guid: 0a212e1143a14864bafb4e5e51e3eb83, type: 3}
+  surface: {fileID: -208448126189960856, guid: 322cf8e1cdbd04045a2d730b876bfabb, type: 3}
 --- !u!1102 &8455375579768960656
 AnimatorState:
   serializedVersion: 6

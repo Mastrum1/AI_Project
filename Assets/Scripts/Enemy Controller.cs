@@ -40,7 +40,10 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         _isDead = false;
-        animator = GetComponent<Animator>();
+        if (gameObject.tag != "Mage")
+        {
+            animator = GetComponent<Animator>();
+        }
         originalPos = transform.position;
         _currentHp = maxHp;
         _isAttacking = false;
@@ -54,8 +57,6 @@ public class EnemyController : MonoBehaviour
     {
         savedTime += Time.deltaTime;
 
-        CheckIfDead();
-
         if (savedTime >= 3f)
         {
             CreateNewFieldOfView();
@@ -63,24 +64,29 @@ public class EnemyController : MonoBehaviour
 
         CheckRayHit();
 
-        CheckIfInRange();
-
-        Attack.OnAttack += Attacking;
-
-        if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
+        if (gameObject.tag != "Mage")
         {
-            CheckStartPos();
-        }
+            CheckIfDead();
 
-        if (gameObject.tag == "Assassin")
-        {
-            CheckIfRetreating();
+            CheckIfInRange();
 
-            if (!calledInvis)
+            Attack.OnAttack += Attacking;
+
+            if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
             {
-                StartCoroutine(CheckIfInvisible());
+                CheckStartPos();
             }
-        } 
+
+            if (gameObject.tag == "Assassin")
+            {
+                CheckIfRetreating();
+
+                if (!calledInvis)
+                {
+                    StartCoroutine(CheckIfInvisible());
+                }
+            }
+        }
     }
 
     private void CreateNewFieldOfView()
@@ -106,14 +112,14 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    if(gameObject.tag == "Mage")
+                    if (gameObject.tag == "Mage")
                     {
                         playerDetected = true;
                     }
                     else
                     {
                         animator.SetBool("IsDetected", true);
-                    }  
+                    }
                 }
             }
         }

@@ -5,17 +5,17 @@ using UnityEngine;
 public class RootNode : Node
 {
     public Node child;
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        return child.Update();
+        return child.MyUpdate(launcher);
     }
 
     public override Node Clone()

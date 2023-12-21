@@ -17,18 +17,18 @@ public abstract class Node :ScriptableObject
      public string guid;
      public Vector2 position;
 
-    public State Update()
+    public State MyUpdate(BehaviourTreeLauncher launcher)
     {
         if(!isStarted)
         {
-            OnStart();
+            OnStart(launcher);
             isStarted = true;
         }
 
-        state = OnUpdate();
+        state = OnUpdate(launcher);
         if(state == State.Success || state == State.Failure)
         {
-            OnStop();
+            OnStop(launcher);
             isStarted = false;
         }
 
@@ -40,7 +40,7 @@ public abstract class Node :ScriptableObject
         return Instantiate(this);
     }
 
-    protected abstract void OnStart();
-    protected abstract void OnStop();
-    protected abstract State OnUpdate();
+    protected abstract void OnStart(BehaviourTreeLauncher launcher);
+    protected abstract void OnStop(BehaviourTreeLauncher launcher);
+    protected abstract State OnUpdate(BehaviourTreeLauncher launcher);
 }

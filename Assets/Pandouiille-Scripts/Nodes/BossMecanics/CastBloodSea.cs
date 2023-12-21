@@ -7,11 +7,11 @@ public class CastBloodSea : ActionNode
     public float interval = 10f;
     private float Timer = 0f;
 
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         Timer = interval;
     }
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         Timer -= Time.deltaTime;
         if (Timer <= 0)
@@ -26,9 +26,9 @@ public class CastBloodSea : ActionNode
         }
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
-        base.OnStop();
+        base.OnStop(launcher);
     }
 
 }

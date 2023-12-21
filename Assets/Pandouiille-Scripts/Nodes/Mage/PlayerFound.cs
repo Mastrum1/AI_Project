@@ -9,6 +9,7 @@ public class PlayerFound : SequencerNode
     {
         if (launcher.gameObject.GetComponent<EnemyController>().playerDetected)
         {
+            Debug.Log(launcher.gameObject.GetComponent<EnemyController>().playerDetected);
             return State.Success;
         }
         else return State.Failure;

@@ -192,9 +192,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3057658511744967675}
   - component: {fileID: 7594844303471417981}
-  - component: {fileID: 9007978897359453364}
-  - component: {fileID: 7681820791385142163}
   - component: {fileID: 2412229235485166514}
+  - component: {fileID: 7681820791385142163}
+  - component: {fileID: 8447942330312232203}
   m_Layer: 0
   m_Name: Enemy Variant Mage
   m_TagString: Untagged
@@ -247,46 +247,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &9007978897359453364
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585882342175127104}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed63290b2ae33d742bf1150c0dedb1b8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7681820791385142163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585882342175127104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  agent: {fileID: 2412229235485166514}
-  detectionTime: 2
-  fovAngle: 45
-  HP: 100
-  minion: {fileID: 7198613115679664026}
 --- !u!195 &2412229235485166514
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -309,6 +269,44 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7681820791385142163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585882342175127104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityRenderer: {fileID: 0}
+  _entityPhysics: {fileID: 0}
+  _entityRb: {fileID: 0}
+  _projectile: {fileID: 0}
+  _respawnTime: 0
+  fovAngle: 45
+  _playerManager: {fileID: 0}
+  _attackDelay: 0
+  _damage: 0
+  player: {fileID: 0}
+  agent: {fileID: 2412229235485166514}
+  detectionTime: 2
+  maxHp: 0
+--- !u!114 &8447942330312232203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585882342175127104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a090ca80011fd40995c580b3ae8c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: d9ffccacee78c1f45bd597f4e9661fea, type: 2}
 --- !u!1 &2940373546361272438
 GameObject:
   m_ObjectHideFlags: 0

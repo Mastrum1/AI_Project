@@ -29,11 +29,6 @@ public class Walk : ActionNode
         }
         else return State.Running;
     }
-    protected override void OnStop(BehaviourTreeLauncher launcher)
-    {
-        Debug.Log($"OnStop{actionNodeMessage}");
-    }
-
     private void SetRandomDestination(BehaviourTreeLauncher launcher)
     {
         do

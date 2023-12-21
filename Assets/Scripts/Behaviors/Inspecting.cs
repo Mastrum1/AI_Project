@@ -23,8 +23,4 @@ public class Inspecting : StateMachineBehaviour
             animator.SetBool("IsInspecting", false);
         }
     }
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //
-    }
 }

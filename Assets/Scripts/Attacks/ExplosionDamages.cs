@@ -26,7 +26,7 @@ public class ExplosionDamages : MonoBehaviour
                     _playertouched = true;
                     pc.Knockback((entity.transform.position - transform.position)* 10f);
                 }
-                entity.GetComponent<Player>().hp -= 10;
+                entity.GetComponent<Player>().TakeDamage(-5);
                 break;
         }
     }*/

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public DefaultPlayerAction _defaultPlayerAction;
     private InputAction _moveAction;
     private InputAction _fire;
-    private bool _fireReady;
+    //private bool _fireReady;
 
     [SerializeField] private Player _playerManager;
     [SerializeField] private GameObject _playerBody;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
        _defaultPlayerAction = new DefaultPlayerAction();
-       _fireReady = true;
+       //_fireReady = true;
     }
 
     private void OnEnable()
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         Mouvements();
 
         _playerBody.transform.LookAt(_poi.transform);
-        Fire();
+        //Fire();
         _playerBody.transform.rotation = Quaternion.Euler(0, _playerBody.transform.rotation.eulerAngles.y, _playerBody.transform.rotation.eulerAngles.z);
     }
 
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         KnockBackDirection = dir;
     }
 
-    private void Fire()
+/*    private void Fire()
     {
         float fire = _fire.ReadValue<float>();
         if ( _playerManager.mana >= 10)
@@ -128,13 +128,13 @@ public class PlayerController : MonoBehaviour
             else _playerAnimations.SetBool("Attack", false);
 
         }
-    }
+    }*/
 
     IEnumerator FireCooldown()
     {
-        _fireReady = false;
+        //_fireReady = false;
         yield return new WaitForSeconds(0.5f);
-        _fireReady = true;
+        //_fireReady = true;
     }
 
 

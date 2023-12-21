@@ -25,7 +25,7 @@ public class ChasePlayer : StateMachineBehaviour
 
         if (savedTime <= detectionTime)
         {
-            if (user.gameObject.tag == "Berserker" && (user.currentHP/user.HP * 100) <= 50)
+            if (user.gameObject.tag == "Berserker" && (user._currentHp/user.maxHp * 100) <= 50)
             {
                 agent.speed += 5;
             }

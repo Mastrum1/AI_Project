@@ -5,10 +5,6 @@ using UnityEngine;
 public class Inspecting : StateMachineBehaviour
 {
     float time;
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //
-    }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Quaternion myRot = Quaternion.identity;

@@ -60,6 +60,15 @@ public class Player : MonoBehaviour
             tempColor.a = _hpLossPercent;
             health.color = tempColor;
         }
+        else
+        {
+            var tempColor = health.color;
+            if (tempColor.a > 0f)
+            {
+                tempColor.a = health.color.a-.001f;
+            }
+            health.color = tempColor;
+        }
 
         switch (hp) 
         { 

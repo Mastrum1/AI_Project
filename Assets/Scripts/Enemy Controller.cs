@@ -2,36 +2,51 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private GameObject _entityRenderer;
+    [SerializeField] private GameObject _entityPhysics;
+    [SerializeField] private Rigidbody _entityRb;
+    [SerializeField] private GameObject _projectile;
+    [SerializeField] private float _respawnTime;
     [SerializeField] float fovAngle;
     [SerializeField] private Player _playerManager;
     [SerializeField] private float _attackDelay;
     [SerializeField] private float _damage;
+
     [NonSerialized] public Vector3 originalPos;
-    [NonSerialized] public float currentHP;
+
+    public float _currentHp { get; private set; }
+    [NonSerialized] public bool playerDetected;
 
     public GameObject player;
     public NavMeshAgent agent;
-    public float HP;
     public float detectionTime;
+    public float maxHp;
 
+    private bool _isDead;
     private float savedTime;
-    private bool _isAttacking = false;
+    private bool _isAttacking;
     private Animator animator;
+    public Animator minion;
     private bool calledInvis;
     private RaycastHit hit;
     private Ray[] ray;
 
     void Start()
     {
+        _isDead = false;
         animator = GetComponent<Animator>();
         originalPos = transform.position;
-        currentHP = HP;
+        _currentHp = maxHp;
+        _isAttacking = false;
+        playerDetected = false;
 
         CreateNewFieldOfView();
     }
@@ -67,7 +82,7 @@ public class EnemyController : MonoBehaviour
             {
                 StartCoroutine(CheckIfInvisible());
             }
-        } 
+        }
     }
 
     private void CreateNewFieldOfView()
@@ -93,12 +108,15 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    animator.SetBool("IsDetected", true);
+                    if(gameObject.tag == "Mage")
+                    {
+                        playerDetected = true;
+                    }
+                    else
+                    {
+                        animator.SetBool("IsDetected", true);
+                    }  
                 }
-            }
-            else
-            {
-                animator.SetBool("IsDetected", false);
             }
         }
     }
@@ -117,8 +135,9 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfInRange()
     {
-        if (gameObject.tag == "Berserker" && currentHP / HP * 100 > 50)
+        if (gameObject.tag == "Berserker" && _currentHp / maxHp * 100 > 50)
         {
+
             for (int i = 0; i < ray.Length - 1; i++)
             {
                 if (Physics.Raycast(ray[i], out hit, 5))
@@ -126,6 +145,7 @@ public class EnemyController : MonoBehaviour
                     if (hit.transform.gameObject.tag == "Player")
                     {
                         animator.SetBool("IsInRange", true);
+                        StartCoroutine(ChooseAttack());
                     }
                 }
                 else
@@ -139,6 +159,7 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Magnitude(player.transform.position - transform.position) < 2)
             {
                 animator.SetBool("IsInRange", true);
+                StartCoroutine(ChooseAttack());
             }
             else
             {
@@ -147,21 +168,23 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Heal(float value)
+    {
+        _currentHp += value;
+    }   
+
     private void CheckIfDead()
     {
-        if (currentHP <= 0)
+        if (_currentHp <= 0 && !_isDead)
         {
-            animator.SetBool("IsDead", true);
-        }
-        else 
-        {
-            animator.SetBool("IsDead", false);
+            _isDead = true;
+            StartCoroutine(Resurect());
         }
     }
 
     private void CheckIfRetreating()
     {
-        if (currentHP <= (HP/2))
+        if (_currentHp <= (maxHp/2))
         {
             animator.SetBool("IsRetreating", true);
         }
@@ -171,12 +194,36 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //event � modifier
     private void Attacking()
     {
         if (!_isAttacking)
         {
             _isAttacking = true;
+            StartCoroutine(AttackDelay());
+        }
+    }
 
+    public void TakeDamage(float damage)
+    {
+        _currentHp -= damage;
+    }
+
+    public void CacAttack()
+    {
+        if (!_isDead && !_isAttacking)
+        {
+            _isAttacking = true;
+            _playerManager.TakeDamage(_damage);
+            StartCoroutine(AttackDelay());
+        }
+    }
+    public void RangedAttack()
+    {
+        if (!_isDead && !_isAttacking)
+        {
+            _isAttacking = true;
+            Instantiate(_projectile, transform.position, transform.rotation);
             StartCoroutine(AttackDelay());
         }
     }
@@ -200,14 +247,37 @@ public class EnemyController : MonoBehaviour
 
         calledInvis = false;
     }
+    IEnumerator ChooseAttack()
+    {
+        minion.SetBool("Attack", true);
+        int rndm = UnityEngine.Random.Range(1, 4);
+        if (rndm == 1)
+            minion.SetInteger("Choose Attack", 1);
+        if (rndm == 2)
+            minion.SetInteger("Choose Attack", 2);
+        if (rndm == 3)
+            minion.SetInteger("Choose Attack", 3);
+        yield return new WaitForSeconds(5f);
+        minion.SetBool("Attack", false);
+
+    }
 
     IEnumerator AttackDelay()
     {
-        if (_playerManager != null)
-        {
-            _playerManager.TakeDamage(_damage);
-        }
         yield return new WaitForSeconds(_attackDelay);
         _isAttacking = false;
-    }   
+    }
+
+    IEnumerator Resurect()
+    {
+        _entityRb.velocity = Vector3.zero;
+        minion.SetBool("IsDead", true); 
+        yield return new WaitForSeconds(_respawnTime);
+        _currentHp = maxHp;
+        _isDead = false;
+        minion.SetBool("IsDead", false); 
+        _entityPhysics.SetActive(true);
+      
+    }
 }
+

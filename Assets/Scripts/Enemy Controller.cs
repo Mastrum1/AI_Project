@@ -271,14 +271,13 @@ public class EnemyController : MonoBehaviour
     IEnumerator Resurect()
     {
         _entityRb.velocity = Vector3.zero;
-        _entityRenderer.SetActive(false); //a retirer pour mettre l'animation de mort --------------------------------------------------------------------
-        _entityPhysics.SetActive(false);
+        minion.SetBool("IsDead", true); 
         yield return new WaitForSeconds(_respawnTime);
         _currentHp = maxHp;
         _isDead = false;
-        _entityRenderer.SetActive(true); //a retirer pour mettre l'animation de mort --------------------------------------------------------------------
+        minion.SetBool("IsDead", false); 
         _entityPhysics.SetActive(true);
-        //animator.SetBool("IsDead", false);
+      
     }
 }
 

@@ -168,6 +168,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Heal(float value)
+    {
+        _currentHp += value;
+    }   
+
     private void CheckIfDead()
     {
         if (_currentHp <= 0 && !_isDead)

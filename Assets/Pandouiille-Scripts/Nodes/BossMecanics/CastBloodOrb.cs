@@ -5,6 +5,7 @@ public class CastBloodOrb : ActionNode
     public Transform playerTransform;
     public Transform bossTransform;
     public float castDistance = 5f;
+
     protected override void OnStart()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;

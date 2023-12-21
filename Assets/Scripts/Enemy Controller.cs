@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _damage;
 
     [NonSerialized] public Vector3 originalPos;
+
     public float _currentHp { get; private set; }
     [NonSerialized] public bool playerDetected;
 
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
     private float savedTime;
     private bool _isAttacking;
     private Animator animator;
+    public Animator minion;
     private bool calledInvis;
     private RaycastHit hit;
     private Ray[] ray;
@@ -80,7 +82,7 @@ public class EnemyController : MonoBehaviour
             {
                 StartCoroutine(CheckIfInvisible());
             }
-        } 
+        }
     }
 
     private void CreateNewFieldOfView()
@@ -135,6 +137,7 @@ public class EnemyController : MonoBehaviour
     {
         if (gameObject.tag == "Berserker" && _currentHp / maxHp * 100 > 50)
         {
+
             for (int i = 0; i < ray.Length - 1; i++)
             {
                 if (Physics.Raycast(ray[i], out hit, 5))
@@ -142,6 +145,7 @@ public class EnemyController : MonoBehaviour
                     if (hit.transform.gameObject.tag == "Player")
                     {
                         animator.SetBool("IsInRange", true);
+                        StartCoroutine(ChooseAttack());
                     }
                 }
                 else
@@ -155,6 +159,7 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Magnitude(player.transform.position - transform.position) < 2)
             {
                 animator.SetBool("IsInRange", true);
+                StartCoroutine(ChooseAttack());
             }
             else
             {
@@ -172,7 +177,6 @@ public class EnemyController : MonoBehaviour
     {
         if (_currentHp <= 0 && !_isDead)
         {
-            //animator.SetBool("IsDead", true); ----------------------------------------------------------------------------------------------------------------
             _isDead = true;
             StartCoroutine(Resurect());
         }
@@ -243,6 +247,20 @@ public class EnemyController : MonoBehaviour
 
         calledInvis = false;
     }
+    IEnumerator ChooseAttack()
+    {
+        minion.SetBool("Attack", true);
+        int rndm = UnityEngine.Random.Range(1, 4);
+        if (rndm == 1)
+            minion.SetInteger("Choose Attack", 1);
+        if (rndm == 2)
+            minion.SetInteger("Choose Attack", 2);
+        if (rndm == 3)
+            minion.SetInteger("Choose Attack", 3);
+        yield return new WaitForSeconds(5f);
+        minion.SetBool("Attack", false);
+
+    }
 
     IEnumerator AttackDelay()
     {
@@ -253,13 +271,13 @@ public class EnemyController : MonoBehaviour
     IEnumerator Resurect()
     {
         _entityRb.velocity = Vector3.zero;
-        _entityRenderer.SetActive(false); //a retirer pour mettre l'animation de mort --------------------------------------------------------------------
-        _entityPhysics.SetActive(false);
+        minion.SetBool("IsDead", true); 
         yield return new WaitForSeconds(_respawnTime);
         _currentHp = maxHp;
         _isDead = false;
-        _entityRenderer.SetActive(true); //a retirer pour mettre l'animation de mort --------------------------------------------------------------------
+        minion.SetBool("IsDead", false); 
         _entityPhysics.SetActive(true);
-        //animator.SetBool("IsDead", false);
+      
     }
 }
+

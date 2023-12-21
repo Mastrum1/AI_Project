@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : MonoBehaviour
+public class myScenesManager : MonoBehaviour
 {
     [SerializeField] static GameObject instance;
 

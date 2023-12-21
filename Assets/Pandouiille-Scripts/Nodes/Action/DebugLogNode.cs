@@ -10,14 +10,14 @@ public class DebugLogNode : ActionNode
     {
         Debug.Log($"OnStart{debugMessage}");
     }
-    protected override void OnStop()
-    {
-        Debug.Log($"OnStop{debugMessage}");
-    }
-
     protected override State OnUpdate()
     {
         Debug.Log($"OnUpdate{debugMessage}");
         return State.Success;
     }
+    protected override void OnStop()
+    {
+        Debug.Log($"OnStop{debugMessage}");
+    }
+
 }

@@ -7,28 +7,32 @@ using Unity.VisualScripting;
 
 public class ChasePlayer : StateMachineBehaviour
 {
-    private GameObject player;
-    private GameObject user;
-    private NavMeshAgent agent;
+    [SerializeField] private GameObject player;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private EnemyController user;
+
+    private float savedTime;
+    private float detectionTime;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        user = animator.gameObject;
-        agent = user.GetComponent<EnemyController>().agent;
-        player = user.GetComponent<EnemyController>().player;
+        detectionTime = user.detectionTime;
+        savedTime = 0;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (user.GetComponent<EnemyController>().savedTime <= user.GetComponent<EnemyController>().detectionTime)
+        savedTime += Time.deltaTime;
+
+        if (savedTime <= detectionTime)
         {
+            if (user.gameObject.tag == "Berserker" && (user.currentHP/user.HP * 100) <= 50)
+            {
+                agent.speed += 5;
+            }
             agent.SetDestination(player.transform.position);
 
             user.transform.rotation = Quaternion.LookRotation(player.transform.position - user.transform.position, user.transform.up);
         }
         else return;
-    }
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //
     }
 }

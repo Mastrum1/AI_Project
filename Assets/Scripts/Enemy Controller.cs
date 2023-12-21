@@ -8,49 +8,53 @@ using UnityEngine.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject player;
-    public NavMeshAgent agent;
-    public float detectionTime;
     [SerializeField] float fovAngle;
-    [SerializeField] float HP;
     [SerializeField] private Player _playerManager;
-    [NonSerialized] public float savedTime;
-    [NonSerialized] public Vector3 originalPos;
-
     [SerializeField] private float _attackDelay;
     [SerializeField] private float _damage;
+    [NonSerialized] public Vector3 originalPos;
+    [NonSerialized] public float currentHP;
 
+    public GameObject player;
+    public NavMeshAgent agent;
+    public float HP;
+    public float detectionTime;
+
+    private float savedTime;
     private bool _isAttacking = false;
     private Animator animator;
-    private float currentHP;
     private bool calledInvis;
-    private bool calledInspec;
+    private RaycastHit hit;
+    private Ray[] ray;
 
-    Ray[] ray;
-    RaycastHit hit;
-
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         originalPos = transform.position;
         currentHP = HP;
+
+        CreateNewFieldOfView();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Attack.OnAttack += Attacking;
+        savedTime += Time.deltaTime;
 
         CheckIfDead();
 
-        CreateFieldOfView();
+        if (savedTime >= 3f)
+        {
+            CreateNewFieldOfView();
+        }
 
         CheckRayHit();
 
         CheckIfInRange();
 
-        if (gameObject.tag == "Skeleton")
+        Attack.OnAttack += Attacking;
+
+        if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
         {
             CheckStartPos();
         }
@@ -66,9 +70,10 @@ public class EnemyController : MonoBehaviour
         } 
     }
 
-    private void CreateFieldOfView()
+    private void CreateNewFieldOfView()
     {
         ray = new Ray[2];
+        savedTime = 0;
 
         ray[0] = new Ray(transform.position, transform.forward);
 
@@ -77,26 +82,17 @@ public class EnemyController : MonoBehaviour
             float rand = UnityEngine.Random.Range(-fovAngle, fovAngle);
 
             ray[i] = new Ray(Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, transform.forward);
-
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis((rand / 2), transform.up) * transform.forward, Color.red);
         }
     }
 
     private void CheckRayHit()
     {
-        savedTime += Time.deltaTime;
-
         for (int i = 0; i < ray.Length - 1; i++)
         {
-            
-
             if (Physics.Raycast(ray[i], out hit, 20))
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    //Debug.Log(savedTime);
-                    savedTime = 0;
-
                     animator.SetBool("IsDetected", true);
                 }
             }
@@ -121,16 +117,33 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfInRange()
     {
-
-        animator.SetFloat("DistanceFromPlayer", Vector3.Magnitude(player.transform.position - transform.position));
-
-        if (animator.GetFloat("DistanceFromPlayer") < 2)
+        if (gameObject.tag == "Berserker" && currentHP / HP * 100 > 50)
         {
-            animator.SetBool("IsInRange", true);
+            for (int i = 0; i < ray.Length - 1; i++)
+            {
+                if (Physics.Raycast(ray[i], out hit, 5))
+                {
+                    if (hit.transform.gameObject.tag == "Player")
+                    {
+                        animator.SetBool("IsInRange", true);
+                    }
+                }
+                else
+                {
+                    animator.SetBool("IsInRange", false);
+                }
+            }
         }
         else
         {
-            animator.SetBool("IsInRange", false);
+            if (Vector3.Magnitude(player.transform.position - transform.position) < 2)
+            {
+                animator.SetBool("IsInRange", true);
+            }
+            else
+            {
+                animator.SetBool("IsInRange", false);
+            }
         }
     }
 

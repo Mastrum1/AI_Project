@@ -627,49 +627,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsDetected
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: IsNotAtStartingPos
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: DistanceFromPlayer
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsRetreating
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsInvisible
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsInspecting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Main States
@@ -1065,6 +1053,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39111af34e324f946a6ebf03e1eee0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  user: {fileID: 0}
 --- !u!114 &8412874385333954548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1077,8 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9f8efe7275b664ab0d25c9f61f5780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surface: {fileID: -4404225818897319689, guid: 0a212e1143a14864bafb4e5e51e3eb83,
-    type: 3}
+  surface: {fileID: 6715575418379219191, guid: 0a212e1143a14864bafb4e5e51e3eb83, type: 3}
 --- !u!1102 &8455375579768960656
 AnimatorState:
   serializedVersion: 6

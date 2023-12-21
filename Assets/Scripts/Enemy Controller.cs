@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     private bool _isAttacking = false;
     private Animator animator;
+    public Animator minion;
     private float currentHP;
     private bool calledInvis;
     private bool calledInspec;
@@ -127,6 +128,7 @@ public class EnemyController : MonoBehaviour
         if (animator.GetFloat("DistanceFromPlayer") < 2)
         {
             animator.SetBool("IsInRange", true);
+            StartCoroutine(ChooseAttack());
         }
         else
         {
@@ -186,6 +188,20 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("IsInvisible", false);
 
         calledInvis = false;
+    }
+    IEnumerator ChooseAttack()
+    {
+        minion.SetBool("Attack", true);
+        int rndm = UnityEngine.Random.Range(1, 4);
+        if (rndm == 1)
+            minion.SetInteger("Choose Attack", 1);
+        if (rndm == 2)
+            minion.SetInteger("Choose Attack", 2);
+        if (rndm == 3)
+            minion.SetInteger("Choose Attack", 3);
+        yield return new WaitForSeconds(5f);
+        minion.SetBool("Attack", false);
+
     }
 
     IEnumerator AttackDelay()

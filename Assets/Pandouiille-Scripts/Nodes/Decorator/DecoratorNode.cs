@@ -5,6 +5,7 @@ using UnityEngine;
 public class DecoratorNode : Node
 {
     [HideInInspector] public Node child;
+
     protected override void OnStart(BehaviourTreeLauncher launcher)
     {
     }

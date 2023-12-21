@@ -9,21 +9,26 @@ public class SequencerNode : CompositeNode
 
     protected override void OnStop(BehaviourTreeLauncher launcher   )
     {
+
     }
 
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        var child = children[current];
-        switch (child.MyUpdate(launcher))
+        for (int i = current; i < children.Count; ++i)
         {
-            case State.Running:
-                return State.Running;
-            case State.Failure:
-                return State.Failure;
-            case State.Success:
-                current++;
-                break;
+            current = i;
+            var child = children[current];
+
+            switch (child.MyUpdate(launcher))
+            {
+                case State.Running:
+                    return State.Running;
+                case State.Failure:
+                    return State.Failure;
+                case State.Success:
+                    continue;
+            }
         }
-        return current == children.Count ? State.Success : State.Running;
+        return State.Success;
     }
 }

@@ -10,15 +10,17 @@ public class CompositeNode : Node
     {
 
     }
-    protected override void OnStop(BehaviourTreeLauncher launcher)
-    {
-
-    }
 
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         return State.Running;
     }
+
+    protected override void OnStop(BehaviourTreeLauncher launcher)
+    {
+
+    }
+
     public override Node Clone()
     {
         CompositeNode node = Instantiate(this);

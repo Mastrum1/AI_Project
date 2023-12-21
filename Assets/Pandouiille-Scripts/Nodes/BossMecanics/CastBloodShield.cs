@@ -11,14 +11,17 @@ public class CastBloodShield : ActionNode
 
     protected override void OnStart(BehaviourTreeLauncher launcher)
     {
+        Debug.Log("Blood Shield On");
         //Activate Shield
     }
+
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         shieldTimer += Time.deltaTime;
 
         if (shieldTimer >= shieldDuration)
         {
+            Debug.Log("Blood Shield Off");
             //Deactivate Shield
             return State.Success;
         }

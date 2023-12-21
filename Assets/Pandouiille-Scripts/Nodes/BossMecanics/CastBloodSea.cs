@@ -11,11 +11,13 @@ public class CastBloodSea : ActionNode
     {
         Timer = interval;
     }
+
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         Timer -= Time.deltaTime;
         if (Timer <= 0)
         {
+            Debug.Log("Cast Blood Sea");
             //Cast Blood Sea
             Timer = interval;
             return State.Success;

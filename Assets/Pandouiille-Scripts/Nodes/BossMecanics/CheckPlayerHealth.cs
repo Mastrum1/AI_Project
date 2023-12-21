@@ -8,19 +8,18 @@ public class CheckPlayerHealth : DecoratorNode
     private float currentHealth;
     public float healthPercentage = 0.5f;
 
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         //float currentHealth = player.GetComponent<PlayerHealth>().currentHealth;
         //float maxHealth = player.GetComponent<PlayerHealth>().maxHealth;
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         if (!player)
         {
             return State.Failure;
         }
-
 
         if (currentHealth > healthPercentage)
         {
@@ -32,7 +31,7 @@ public class CheckPlayerHealth : DecoratorNode
         }
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 }

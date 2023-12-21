@@ -27,6 +27,7 @@ public class CastBloodRay : ActionNode
         {
             if (RayTimer >= RayDuration)
             {
+                Debug.Log("Cast Blood Ray");
                 //Casting Blood Ray
                 return State.Success;
             }

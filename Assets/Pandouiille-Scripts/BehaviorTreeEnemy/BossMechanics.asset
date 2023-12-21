@@ -15,8 +15,30 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 746122dbe4664af4c97f3bcc069204ae
-  position: {x: 0, y: 0}
-  child: {fileID: 0}
+  position: {x: 98.19496, y: 0.9424942}
+  child: {fileID: 2070415409033652095}
+--- !u!114 &-328658572490928744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0989f1330e5c152448fe68b5f880e57d, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: d5e3e4d836f4ead42b2e3a58537ba50e
+  position: {x: 117.9661, y: 249.8106}
+  children:
+  - {fileID: 2289676370037054268}
+  - {fileID: 9122048138557398542}
+  - {fileID: 7895963284956791169}
+  - {fileID: 7489452267537547103}
+  - {fileID: 6564545511989031037}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,3 +55,162 @@ MonoBehaviour:
   treeState: 0
   Nodes:
   - {fileID: -1224502622592918054}
+  - {fileID: -328658572490928744}
+  - {fileID: 2289676370037054268}
+  - {fileID: 9122048138557398542}
+  - {fileID: 7895963284956791169}
+  - {fileID: 7489452267537547103}
+  - {fileID: 6564545511989031037}
+  - {fileID: 6817331948329682585}
+  - {fileID: 2070415409033652095}
+  - {fileID: 8807992864283162215}
+--- !u!114 &2070415409033652095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79f3477b1138c94e877b8242c161cc7, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: b687277f31e889c48b23b60b76f33911
+  position: {x: 100.82999, y: 118.64252}
+  child: {fileID: -328658572490928744}
+--- !u!114 &2289676370037054268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33adec7b6404aa4c99a1d14712e9ef4, type: 3}
+  m_Name: CheckAttackPlayer
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 426119e4312cc694fb4c9edcb513e2da
+  position: {x: 422.15753, y: 465.35}
+  child: {fileID: 6817331948329682585}
+  playerTransform: {fileID: 0}
+  bossTransform: {fileID: 0}
+  PowerAttackPlayer: 0.1
+--- !u!114 &6564545511989031037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dceb9f86b04e834fb20e7c88c736d2f, type: 3}
+  m_Name: CastBloodRay
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 5ac32d35a71737c4784938b5a7f0a27e
+  position: {x: -330.62503, y: 429.7067}
+  actionNodeMessage: Action
+  playerTransform: {fileID: 0}
+  bossTransform: {fileID: 0}
+  castDistance: 5
+  RayDuration: 5
+  RayTimer: 0
+--- !u!114 &6817331948329682585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658dcae811611bd4aacdd3368b1b1fec, type: 3}
+  m_Name: CastBloodSea
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 4a975a26aff67d249b8cc0916ac85555
+  position: {x: 572.6425, y: 698.9677}
+  actionNodeMessage: Action
+  interval: 10
+--- !u!114 &7489452267537547103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900de9a5a7a434f45bc25b1d2c8005e5, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 17734215c2c4913429a4137b2ed25cd2
+  position: {x: -330.69495, y: 368.3575}
+  actionNodeMessage: Action
+  duration: 10
+--- !u!114 &7895963284956791169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c653468b470304fa0167b51519bc72, type: 3}
+  m_Name: CastBloodOrb
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: afdfe8107e795fd4cb475cf430af84bd
+  position: {x: -330.28748, y: 302.13882}
+  actionNodeMessage: Action
+  castDistance: 5
+--- !u!114 &8807992864283162215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93216d62cdd97a448904f6b75b967530, type: 3}
+  m_Name: Walk
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: a26f9c76f4a5e50488a7cd6b22aeadf4
+  position: {x: 0, y: 0}
+  actionNodeMessage: Action
+  surface: {fileID: 0}
+--- !u!114 &9122048138557398542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24e5c6fa81e4a74799b2de7c5ecbbd7, type: 3}
+  m_Name: CheckPlayerHealth
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: f08eafd974a30a54cab9d52ecac1e56c
+  position: {x: 184.64253, y: 530.67}
+  child: {fileID: 0}
+  player: {fileID: 0}
+  healthPercentage: 0.5

@@ -9,6 +9,7 @@ public class ActionNode : Node
     {
         Debug.Log($"OnStart{actionNodeMessage}");
     }
+
     protected override void OnStop(BehaviourTreeLauncher launcher)
     {
         Debug.Log($"OnStop{actionNodeMessage}");

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class CastBloodOrb : ActionNode
 {
-    public Transform playerTransform;
-    public Transform bossTransform;
+    private Transform playerTransform;
+    private Transform bossTransform;
     public float castDistance = 5f;
 
     protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
+        bossTransform = launcher.transform;
     }
 
     protected override void OnStop(BehaviourTreeLauncher launcher)
@@ -21,6 +21,7 @@ public class CastBloodOrb : ActionNode
     {
         if (Vector3.Distance(playerTransform.position, bossTransform.position) < castDistance)
         {
+            Debug.Log("Cast Blood Orb");
             //Casting Blood Orb
             return State.Success;
         }

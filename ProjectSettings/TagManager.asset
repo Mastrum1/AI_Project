@@ -7,6 +7,7 @@ TagManager:
   - Skeleton
   - Assassin
   - Berserker
+  - Mage
   layers:
   - Default
   - TransparentFX

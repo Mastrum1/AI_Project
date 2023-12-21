@@ -33,6 +33,6 @@ public class ChasePlayer : StateMachineBehaviour
 
             user.transform.rotation = Quaternion.LookRotation(player.transform.position - user.transform.position, user.transform.up);
         }
-        else return;
+        else animator.SetBool("IsDetected", false);
     }
 }

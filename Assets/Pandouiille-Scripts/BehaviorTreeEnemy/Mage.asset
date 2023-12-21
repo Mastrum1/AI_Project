@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7818167609626985847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2e8828e5d4b31478ea92639e45dda6, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: c0a535b5e0138b144b9aba6d76d20e4f
+  position: {x: 57, y: -16}
+  child: {fileID: -6073976650861026595}
+--- !u!114 &-6073976650861026595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93216d62cdd97a448904f6b75b967530, type: 3}
+  m_Name: Walk
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 2dd9720b796c5324a87e0b97a551bc9e
+  position: {x: 17, y: 149}
+  actionNodeMessage: Action
+  surface: {fileID: -208448126189960856, guid: 322cf8e1cdbd04045a2d730b876bfabb, type: 3}
+  agent: {fileID: 0}
+  user: {fileID: 3980702846138585925, guid: ca88ae92e5035cb49b46b05b32f069f9, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e91478d7d37f2b44a337ee91fafdf0e, type: 3}
+  m_Name: Mage
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -7818167609626985847}
+  treeState: 0
+  Nodes:
+  - {fileID: -7818167609626985847}
+  - {fileID: -6073976650861026595}

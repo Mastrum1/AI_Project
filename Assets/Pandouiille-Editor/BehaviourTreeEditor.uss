@@ -1,0 +1,28 @@
+GridBackground {
+    --grid-background-color: rgb(40, 40, 40);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 15;
+}
+
+Label {
+    color: rgb(196, 196, 196);
+    background-color: rgb(70, 69, 69);
+    -unity-background-image-tint-color: rgb(101, 44, 44);
+    -unity-text-align: lower-right;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.node-property-field .unity-base-field__input {
+    min-width: 20px;
+}
+
+.node-property-field .unity-base-field {
+    margin-left: 0;
+}
+
+.unity-multi-column-view__cell {
+    justify-content: center;
+    margin-left: 5px;
+}

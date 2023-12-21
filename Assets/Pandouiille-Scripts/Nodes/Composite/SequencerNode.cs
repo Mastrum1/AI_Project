@@ -2,19 +2,19 @@ public class SequencerNode : CompositeNode
 {
     int current;
 
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         current = 0;
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher   )
     {
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         var child = children[current];
-        switch (child.Update())
+        switch (child.MyUpdate(launcher))
         {
             case State.Running:
                 return State.Running;

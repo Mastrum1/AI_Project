@@ -9,10 +9,10 @@ public class BossMainSequence : DecoratorNode
     [HideInInspector] public int bossHealth;
     [HideInInspector] public int bossMaxHealth;
     
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
     }
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         if (playerAttack >= bossHealth * 0.1)
         {
@@ -25,7 +25,7 @@ public class BossMainSequence : DecoratorNode
         return State.Success;
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 }

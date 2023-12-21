@@ -9,11 +9,11 @@ public class CastBloodShield : ActionNode
     public float shieldDuration = 10f;
     public float shieldTimer = 0f;
 
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         //Activate Shield
     }
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         shieldTimer += Time.deltaTime;
 
@@ -28,9 +28,9 @@ public class CastBloodShield : ActionNode
         }
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
-        base.OnStop();
+        base.OnStop(launcher);
     }
 
 }

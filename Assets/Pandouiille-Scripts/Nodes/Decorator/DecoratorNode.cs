@@ -5,16 +5,16 @@ using UnityEngine;
 public class DecoratorNode : Node
 {
     [HideInInspector] public Node child;
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
     }
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        State state = child.Update();
+        State state = child.MyUpdate(launcher);
         return state;
     }
 

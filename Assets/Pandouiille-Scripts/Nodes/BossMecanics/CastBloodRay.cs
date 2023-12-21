@@ -9,18 +9,18 @@ public class CastBloodRay : ActionNode
     public float castDistance = 5f;
     public float RayDuration = 5f;
     public float RayTimer = 0f;
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         bossTransform = GameObject.FindGameObjectWithTag("Boss").transform;
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
-        base.OnStop();
+        base.OnStop(launcher);
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         RayTimer += Time.deltaTime;
         if (Vector3.Distance(playerTransform.position, bossTransform.position) < castDistance)

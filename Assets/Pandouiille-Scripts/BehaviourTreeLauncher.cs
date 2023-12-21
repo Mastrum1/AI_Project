@@ -14,6 +14,6 @@ public class BehaviourTreeLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tree.Update();
+        tree.MyUpdate(this);
     }
 }

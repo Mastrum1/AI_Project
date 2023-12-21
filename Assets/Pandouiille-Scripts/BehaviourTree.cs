@@ -10,11 +10,11 @@ public class BehaviourTree : ScriptableObject
     public Node.State treeState = Node.State.Running;
     public List<Node> Nodes = new List<Node>();
 
-    public Node.State Update()
+    public Node.State MyUpdate(BehaviourTreeLauncher launcher)
     {
         if (rootNode.state == Node.State.Running)
         {
-            treeState = rootNode.Update();
+            treeState = rootNode.MyUpdate(launcher);
         }
         return treeState;
     }

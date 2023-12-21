@@ -7,12 +7,12 @@ public class CheckAttackPlayer : DecoratorNode
     public float PowerAttackPlayer = 0.1f;
 
 
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
 
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         if (playerTransform == null || bossTransform == null)
         {
@@ -36,7 +36,7 @@ public class CheckAttackPlayer : DecoratorNode
         }
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 

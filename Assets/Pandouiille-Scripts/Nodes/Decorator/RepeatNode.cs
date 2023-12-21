@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class RepeatNode : DecoratorNode
 {
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        child.Update();
+        child.MyUpdate(launcher);
         return State.Running;
     }
 }

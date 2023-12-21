@@ -8,16 +8,16 @@ public class WaitNode : ActionNode
     float StartTime;
 
     // Start is called before the first frame update
-    protected override void OnStart()
+    protected override void OnStart(BehaviourTreeLauncher launcher)
     {
         StartTime = Time.time;
     }
 
-    protected override void OnStop()
+    protected override void OnStop(BehaviourTreeLauncher launcher)
     {
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         if (Time.time - StartTime > duration)
         {

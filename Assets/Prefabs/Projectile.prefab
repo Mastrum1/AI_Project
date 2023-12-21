@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1050964754246473433}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.21}
+  m_LocalPosition: {x: 0, y: -0.7, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15725,7 +15725,7 @@ Transform:
   m_GameObject: {fileID: 4033073993219698826}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 3.333333}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15755,10 +15755,10 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 22.363523, y: 0.30659363, z: 0, w: 0}
+      - m_Value: {x: 110.13093, y: 1.5098444, z: 0, w: 0}
         m_Name: Color
         m_Overridden: 1
-      - m_Value: {x: 34.296745, y: 24.864117, z: 0, w: 0}
+      - m_Value: {x: 1.6055591, y: 1.1639824, z: 0, w: 0}
         m_Name: New Color
         m_Overridden: 1
     m_Uint:

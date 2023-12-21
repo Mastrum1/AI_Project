@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _attackDelay;
     [SerializeField] private float _damage;
     [NonSerialized] public Vector3 originalPos;
-    [NonSerialized] public float currentHP;
+    [NonSerialized]public float currentHP;
 
     public GameObject player;
     public NavMeshAgent agent;
@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour
     private bool _isAttacking = false;
     private Animator animator;
     public Animator minion;
-    private float currentHP;
     private bool calledInvis;
     private RaycastHit hit;
     private Ray[] ray;

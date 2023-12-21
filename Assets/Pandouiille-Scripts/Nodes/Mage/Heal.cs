@@ -10,7 +10,7 @@ public class Heal : ActionNode
     {
         if (ally.tag == "Assassin" && Vector3.Magnitude(ally.transform.position - launcher.transform.position) < 2)
         {
-            //ally.GetComponent<EnemyController>()._currentHp += 2;
+            ally.GetComponent<EnemyController>().Heal(2);
             return State.Success;
         }
         else return State.Running;

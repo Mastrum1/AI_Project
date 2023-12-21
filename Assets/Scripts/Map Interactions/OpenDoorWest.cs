@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
     [SerializeField] GameObject _door;
+    [SerializeField] Player _player;
     [SerializeField] float translateSpeed = 1f;
     void Start()
     {
@@ -18,22 +20,16 @@ public class DoorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider colision)
     {
-        if (colision.tag == "Player")
+        if (colision.tag == "Player" && gameObject.tag != "Boss")
         {
-            //ChangeTargetObjectPosition();
             StartCoroutine(IncreaseRotation());
         }
-    }
-
-    void ChangeTargetObjectPosition()
-    {
-        if (_door != null)
+        else if (colision.tag == "Player" && gameObject.tag == "Boss")
         {
-            if (_door.transform.rotation.y < 105)
+            if (_player.CountKey == 3) 
             {
-                Quaternion newPosition = _door.transform.rotation;
-                newPosition.y = 0.1f;
-                _door.transform.rotation = newPosition;
+                StartCoroutine(IncreaseRotation());
+                StartCoroutine(StartBoss());
             }
         }
     }
@@ -50,6 +46,11 @@ public class DoorScript : MonoBehaviour
             yield return null;
         }
         gameObject.gameObject.SetActive(false);
-       
+    }
+
+    private IEnumerator StartBoss()
+    {
+        yield return new WaitForSeconds(2f);
+        GameObject.Find("SceneManager").GetComponents<myScenesManager>()[0].StartBoss();
     }
 }

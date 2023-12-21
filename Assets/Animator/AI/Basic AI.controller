@@ -344,15 +344,9 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skeleton AI
+  m_Name: Basic AI
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsRetreating
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: IsInRange
     m_Type: 4
     m_DefaultFloat: 0
@@ -373,12 +367,6 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: IsDead
     m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: DistanceFromPlayer
-    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -441,8 +429,7 @@ AnimatorState:
   - {fileID: -4340232722667356403}
   - {fileID: -6530219605060495911}
   - {fileID: 4471913748428517759}
-  m_StateMachineBehaviours:
-  - {fileID: -5085147251146253824}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -587,6 +574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39111af34e324f946a6ebf03e1eee0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  user: {fileID: 0}
 --- !u!1102 &5810643775560524037
 AnimatorState:
   serializedVersion: 6

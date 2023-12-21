@@ -19,9 +19,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Player _playerManager;
     [SerializeField] private float _attackDelay;
     [SerializeField] private float _damage;
+
     [NonSerialized] public Vector3 originalPos;
     public float _currentHp { get; private set; }
-    
+    [NonSerialized] public bool playerDetected;
+
     public GameObject player;
     public NavMeshAgent agent;
     public float detectionTime;
@@ -29,7 +31,7 @@ public class EnemyController : MonoBehaviour
 
     private bool _isDead;
     private float savedTime;
-    private bool _isAttacking = false;
+    private bool _isAttacking;
     private Animator animator;
     private bool calledInvis;
     private RaycastHit hit;
@@ -41,6 +43,8 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         originalPos = transform.position;
         _currentHp = maxHp;
+        _isAttacking = false;
+        playerDetected = false;
 
         CreateNewFieldOfView();
     }
@@ -102,12 +106,15 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    animator.SetBool("IsDetected", true);
+                    if(gameObject.tag == "Mage")
+                    {
+                        playerDetected = true;
+                    }
+                    else
+                    {
+                        animator.SetBool("IsDetected", true);
+                    }  
                 }
-            }
-            else
-            {
-                animator.SetBool("IsDetected", false);
             }
         }
     }
@@ -178,7 +185,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    //event à modifier
+    //event ï¿½ modifier
     private void Attacking()
     {
         if (!_isAttacking)

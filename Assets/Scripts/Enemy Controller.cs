@@ -195,6 +195,12 @@ public class EnemyController : MonoBehaviour
         if (!_isAttacking)
         {
             _isAttacking = true;
+            if (gameObject.tag == "Berserker" && _currentHp >= (maxHp / 2))
+            {
+                RangedAttack();
+            }
+            else CacAttack();
+
             StartCoroutine(AttackDelay());
         }
     }

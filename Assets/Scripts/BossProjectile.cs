@@ -6,15 +6,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class ProjectileScript : MonoBehaviour
+public class BossProjectile : MonoBehaviour
 {
     private bool _isExploding;
     private bool _isDestroying;
 
+    [SerializeField] private float _power;
+    [SerializeField] private GameObject _player;
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private MeshRenderer _mesh;
     [SerializeField] private Rigidbody _rb;
-
     [SerializeField] private GameObject _explosion;
     [SerializeField] private GameObject _vfx;
     [SerializeField] private GameObject _trail;
@@ -23,6 +24,9 @@ public class ProjectileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.LookAt(_player.transform);
+        _rb.velocity = transform.forward * _power;
+
         StartCoroutine(DestroyProj());
         _isExploding = false;
         _isDestroying = false;
@@ -37,7 +41,7 @@ public class ProjectileScript : MonoBehaviour
         if (collision.gameObject.name == "Door")
         {
             _isDestroying = true;
-            StartCoroutine(DestroyDoor(collision.gameObject));           
+            StartCoroutine(DestroyDoor(collision.gameObject));
         }
 
         _collider.enabled = false;
@@ -51,7 +55,7 @@ public class ProjectileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (_isExploding)
+        if (_isExploding)
         {
             _light.GetComponent<Light>().intensity -= 0.22f;
         }
@@ -59,7 +63,7 @@ public class ProjectileScript : MonoBehaviour
 
     IEnumerator DestroyProj()
     {
-        if (!_isExploding && !_isDestroying && gameObject!= null)
+        if (!_isExploding && !_isDestroying && gameObject != null)
         {
             yield return new WaitForSeconds(10f);
             Destroy(gameObject);

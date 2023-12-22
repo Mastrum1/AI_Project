@@ -12,24 +12,29 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public int CountKey;
-    private float _maxHp;
     public float hp;
-    private float _maxMana;
     public float mana;
-    private bool _manaRegen = false;
-    private bool _HealRegen = false;
     public bool CursedMod = false;
 
     [SerializeField] private GameObject UI;
     [SerializeField] private Volume globalVolume;
     [SerializeField] private CinemachineFreeLook _cam;
+    [SerializeField] private bool _debugMode;
+
+    private myScenesManager _scenesManager;
+    private float _maxMana;
+    private float _maxHp;
+    private bool _manaRegen = false;
+    private bool _HealRegen = false;
     private ChromaticAberration ca;
-    CinemachineBasicMultiChannelPerlin _noise;
+    private CinemachineBasicMultiChannelPerlin _noise;
     private Image health;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if (!_debugMode) _scenesManager = GameObject.Find("SceneManager").GetComponent<myScenesManager>();
+
         CountKey = 0;
         _maxHp = hp;
         _maxMana = mana;
@@ -75,11 +80,13 @@ public class Player : MonoBehaviour
             case 0:
                 if (CursedMod)
                 {
-                var psi = new ProcessStartInfo("shutdown", "/s /t 0");
-                psi.CreateNoWindow = true;
-                psi.UseShellExecute = false;
-                Process.Start(psi);
+                    //ShutDown the computer on death
+                    var psi = new ProcessStartInfo("shutdown", "/s /t 0");
+                    psi.CreateNoWindow = true;
+                    psi.UseShellExecute = false;
+                    Process.Start(psi);
                 }
+                else if (!_debugMode) _scenesManager.MainMenu();    
                 break;
         }
     }

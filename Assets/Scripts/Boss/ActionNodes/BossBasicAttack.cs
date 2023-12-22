@@ -17,6 +17,6 @@ public class BasicAttack : ActionNode
             savedTime = 0;
             return State.Success;
         }
-        else return State.Failure;
+        else return State.Running;
     }
 }

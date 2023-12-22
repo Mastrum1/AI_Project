@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerFound : SequencerNode
+public class PlayerFound : SelectorNode
 {
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {

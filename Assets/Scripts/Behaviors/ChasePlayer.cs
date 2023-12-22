@@ -8,13 +8,15 @@ using Unity.VisualScripting;
 public class ChasePlayer : StateMachineBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private EnemyController user;
 
+    private NavMeshAgent agent;
+    private EnemyController user;
     private float savedTime;
     private float detectionTime;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        user = animator.gameObject.GetComponent<EnemyController>();
+        agent = animator.gameObject.GetComponent<NavMeshAgent>();
         detectionTime = user.detectionTime;
         savedTime = 0;
     }

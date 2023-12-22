@@ -9342,6 +9342,7 @@ GameObject:
   - component: {fileID: 4161656473588913779}
   - component: {fileID: 4620908374333218022}
   - component: {fileID: 4564341776004107902}
+  - component: {fileID: 408779469045840120}
   m_Layer: 0
   m_Name: Death Fire
   m_TagString: Untagged
@@ -14163,12 +14164,28 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.6283011, y: 7.8470516, z: 4.9528546}
   m_Center: {x: 0, y: 2.109375, z: 2.3185732}
+--- !u!114 &408779469045840120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779784402768852773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05690e1a230735b409e78152a5469733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wall: {fileID: 6779784402768852773}
+  _damage: 5
+  _duration: 5
+  _playerManager: {fileID: 0}
 --- !u!1 &8717355707719373940
 GameObject:
   m_ObjectHideFlags: 0
@@ -14214,7 +14231,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.32040966, b: 0, a: 1}
-  m_Intensity: 0
+  m_Intensity: 2.9952812
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

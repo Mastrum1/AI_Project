@@ -21,10 +21,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _damage;
 
     [NonSerialized] public Vector3 originalPos;
-
-    public float _currentHp { get; private set; }
     [NonSerialized] public bool playerDetected;
 
+    public float _currentHp { get; private set; }
     public GameObject player;
     public NavMeshAgent agent;
     public float detectionTime;
@@ -42,7 +41,10 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         _isDead = false;
-        animator = GetComponent<Animator>();
+        if (gameObject.tag != "Mage")
+        {
+            animator = GetComponent<Animator>();
+        }
         originalPos = transform.position;
         _currentHp = maxHp;
         _isAttacking = false;
@@ -54,33 +56,37 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(_currentHp);
         savedTime += Time.deltaTime;
 
-        CheckIfDead();
-
-        if (savedTime >= 3f)
+        if (gameObject.tag != "Mage")
         {
-            CreateNewFieldOfView();
-        }
-
-        CheckRayHit();
-
-        CheckIfInRange();
-
-        Attack.OnAttack += Attacking;
-
-        if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
-        {
-            CheckStartPos();
-        }
-
-        if (gameObject.tag == "Assassin")
-        {
-            CheckIfRetreating();
-
-            if (!calledInvis)
+            if (savedTime >= 3f)
             {
-                StartCoroutine(CheckIfInvisible());
+                CreateNewFieldOfView();
+            }
+
+            CheckRayHit();
+
+            CheckIfDead();
+
+            CheckIfInRange();
+
+            Attack.OnAttack += Attacking;
+
+            if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
+            {
+                CheckStartPos();
+            }
+
+            if (gameObject.tag == "Assassin")
+            {
+                CheckIfRetreating();
+
+                if (!calledInvis)
+                {
+                    StartCoroutine(CheckIfInvisible());
+                }
             }
         }
     }
@@ -108,14 +114,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    if(gameObject.tag == "Mage")
-                    {
-                        playerDetected = true;
-                    }
-                    else
-                    {
-                        animator.SetBool("IsDetected", true);
-                    }  
+                    animator.SetBool("IsDetected", true);
                 }
             }
         }
@@ -279,6 +278,22 @@ public class EnemyController : MonoBehaviour
         minion.SetBool("IsDead", false); 
         _entityPhysics.SetActive(true);
       
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            playerDetected = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerDetected = false;
+        }
     }
 }
 

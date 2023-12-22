@@ -5,14 +5,20 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Heal : ActionNode
 {
-    private GameObject ally;
+    [SerializeField] private GameObject _healingSpell;
+    [SerializeField] private GameObject[] allies;
+    
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        if (ally.tag == "Assassin" && Vector3.Magnitude(ally.transform.position - launcher.transform.position) < 2)
+        for (int i = 0; i < allies.Length; i++)
         {
-            ally.GetComponent<EnemyController>().Heal(2);
-            return State.Success;
+            if (allies[i].tag == "Assassin" && Vector3.Magnitude(allies[i].transform.position - launcher.transform.position) < 2)
+            {
+                allies[i].GetComponent<EnemyController>().Heal(2);
+                Instantiate(_healingSpell);
+                return State.Success;
+            }
         }
-        else return State.Running;
+        return State.Failure;
     }
 }

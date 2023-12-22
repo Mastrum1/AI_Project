@@ -287,7 +287,14 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") 
         {
-            playerDetected = true;
+            if (gameObject.tag != "Mage")
+            {
+                animator.SetBool("IsDetected", true);
+            }
+            else
+            {
+                playerDetected = true;
+            }
         }
     }
 
@@ -295,7 +302,14 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            playerDetected = false;
+            if (gameObject.tag != "Mage")
+            {
+                animator.SetBool("IsDetected", true);
+            } 
+            else
+            {
+                playerDetected = false;
+            }
         }
     }
 }

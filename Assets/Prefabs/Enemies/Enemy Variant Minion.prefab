@@ -993,6 +993,7 @@ GameObject:
   - component: {fileID: 4938471702473968981}
   - component: {fileID: 184494234028881213}
   - component: {fileID: 253512227358783914}
+  - component: {fileID: -6185154920623373101}
   m_Layer: 0
   m_Name: Enemy Variant Minion
   m_TagString: Skeleton
@@ -1136,6 +1137,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.09
   m_Center: {x: 0, y: 0.66, z: 0}
+--- !u!135 &-6185154920623373101
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161042217170592146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4
+  m_Center: {x: 0, y: 0.89, z: 0}
 --- !u!1 &8781970701900089477
 GameObject:
   m_ObjectHideFlags: 0

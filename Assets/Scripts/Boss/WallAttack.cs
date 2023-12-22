@@ -59,7 +59,7 @@ public class WallAttack : MonoBehaviour
     {
         _damageTook = true;
         _playerManager.TakeDamage(_damage);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.01f);
         _damageTook = false;
     }
 }

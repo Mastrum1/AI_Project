@@ -18,7 +18,7 @@ public class myScenesManager : MonoBehaviour
 
     public enum Scenes
     {
-        MainMenu,
+        Menu,
         Game,
         Boss
     }
@@ -39,7 +39,7 @@ public class myScenesManager : MonoBehaviour
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(Scenes.MainMenu.ToString());
+        SceneManager.LoadScene(Scenes.Menu.ToString());
     }
 
     public void NextScene()

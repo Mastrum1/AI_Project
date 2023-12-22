@@ -1,7 +1,6 @@
-using System.Security.Cryptography;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using UnityEditor.Callbacks;
 
 public class BehaviourTreeEditor : EditorWindow
@@ -34,11 +33,11 @@ public class BehaviourTreeEditor : EditorWindow
         VisualElement root = rootVisualElement;
 
         // Import UXML
-        VisualTreeAsset visualtree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Pandouiille-Editor/BehaviourTreeEditor.uxml");
+        VisualTreeAsset visualtree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/BehaviourTreeEditor.uxml");
         visualtree.CloneTree(root);
 
         // Import StyleSheet
-        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Pandouiille-Editor/BehaviourTreeEditor.uss");
+        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss");
         root.styleSheets.Add(styleSheet);
 
         treeView = root.Q<BehaviourTreeView>();

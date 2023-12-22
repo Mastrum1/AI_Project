@@ -68,7 +68,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 69dbbb0fcf4b23c458b61ef491941660
-  position: {x: 0, y: 0}
+  position: {x: 268.23456, y: -176.99942}
   children: []
 --- !u!114 &-29439785112989628
 MonoBehaviour:
@@ -153,7 +153,9 @@ MonoBehaviour:
   isStarted: 0
   guid: 10d2600f620735944b4986a5b543c5d8
   position: {x: 12.243124, y: 136.4225}
-  children: []
+  children:
+  - {fileID: 2762620773572875008}
+  - {fileID: 7208478336189968393}
 --- !u!114 &2398571352155913603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +171,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: e83d7adc1a7fea24dab7066178d941bf
-  position: {x: 0, y: 0}
+  position: {x: 356.41248, y: -189.06757}
   children: []
 --- !u!114 &2762620773572875008
 MonoBehaviour:
@@ -207,6 +209,7 @@ MonoBehaviour:
   children:
   - {fileID: -29439785112989628}
   - {fileID: 1643361043165224288}
+  - {fileID: 4628866769605617454}
 --- !u!114 &4628866769605617454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +245,8 @@ MonoBehaviour:
   guid: eb0c74b9a99f9ee4b89ec12807b5d9b0
   position: {x: -265.16, y: 249}
   actionNodeMessage: Action
-  surface: {fileID: 1537031989271543255, guid: 49b5f6b6052cfb74e8c2ce397afeb0d9, type: 3}
+  surface: {fileID: -5083649777644289242, guid: 27016c35b7c6b1e4eba7f8a57057b83c,
+    type: 3}
 --- !u!114 &6194806598161774451
 MonoBehaviour:
   m_ObjectHideFlags: 0

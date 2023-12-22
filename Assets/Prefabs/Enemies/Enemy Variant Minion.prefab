@@ -992,6 +992,7 @@ GameObject:
   - component: {fileID: 7163187046648766611}
   - component: {fileID: 4938471702473968981}
   - component: {fileID: 184494234028881213}
+  - component: {fileID: 253512227358783914}
   m_Layer: 0
   m_Name: Enemy Variant Minion
   m_TagString: Skeleton
@@ -1078,19 +1079,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
+  _entityRenderer: {fileID: 4693677259151985357}
+  _entityPhysics: {fileID: 4073735644502960289}
+  _entityRb: {fileID: 2457042270015895757}
   _projectile: {fileID: 0}
-  _respawnTime: 0
+  _respawnTime: 10
   fovAngle: 45
   _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
+  _attackDelay: 2
+  _damage: 5
   player: {fileID: 0}
   agent: {fileID: 184494234028881213}
-  detectionTime: 2
-  maxHp: 0
+  detectionTime: 5
+  maxHp: 15
   minion: {fileID: 2595767041752692644}
 --- !u!195 &184494234028881213
 NavMeshAgent:
@@ -1114,6 +1115,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &253512227358783914
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161042217170592146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.09
+  m_Center: {x: 0, y: 0.66, z: 0}
 --- !u!1 &8781970701900089477
 GameObject:
   m_ObjectHideFlags: 0

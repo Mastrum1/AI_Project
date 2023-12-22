@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 287899801334674383}
   - component: {fileID: 2767178219406737425}
   m_Layer: 0
-  m_Name: Boss Projectile
+  m_Name: Mage Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.23, y: 0, z: -9.49}
-  m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.66}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3398883541773705262}

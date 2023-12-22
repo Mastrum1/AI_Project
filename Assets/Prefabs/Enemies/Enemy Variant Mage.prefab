@@ -504,20 +504,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
-  _projectile: {fileID: 0}
-  _respawnTime: 0
+  _entityRenderer: {fileID: 4158525559680074872}
+  _entityPhysics: {fileID: 4170583182716544822}
+  _entityRb: {fileID: 7594844303471417981}
+  _projectile: {fileID: 2638929758560766987, guid: 8ac56520fde1dfb4798350b396572572,
+    type: 3}
+  _respawnTime: 25
   fovAngle: 45
   _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
+  _attackDelay: 4
+  _damage: 10
   player: {fileID: 0}
   agent: {fileID: 2412229235485166514}
-  detectionTime: 2
-  maxHp: 0
-  minion: {fileID: 0}
+  detectionTime: 3
+  maxHp: 30
+  minion: {fileID: 7198613115679664026}
 --- !u!114 &8447942330312232203
 MonoBehaviour:
   m_ObjectHideFlags: 0

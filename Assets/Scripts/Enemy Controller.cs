@@ -59,15 +59,15 @@ public class EnemyController : MonoBehaviour
     {
         savedTime += Time.deltaTime;
 
-        if (savedTime >= 3f)
-        {
-            CreateNewFieldOfView();
-        }
-
-        CheckRayHit();
-
         if (gameObject.tag != "Mage")
         {
+            if (savedTime >= 3f)
+            {
+                CreateNewFieldOfView();
+            }
+
+            CheckRayHit();
+
             CheckIfDead();
 
             CheckIfInRange();
@@ -114,14 +114,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
-                    if (gameObject.tag == "Mage")
-                    {
-                        playerDetected = true;
-                    }
-                    else
-                    {
-                        animator.SetBool("IsDetected", true);
-                    }
+                    animator.SetBool("IsDetected", true);
                 }
             }
         }
@@ -284,6 +277,22 @@ public class EnemyController : MonoBehaviour
         minion.SetBool("IsDead", false); 
         _entityPhysics.SetActive(true);
       
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            playerDetected = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerDetected = false;
+        }
     }
 }
 

@@ -11,6 +11,10 @@ public class MageAttack : ActionNode
     }
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        return State.Success;
+        if (launcher == null)
+        {
+            return State.Success;
+        }
+        else return State.Failure;
     }
 }

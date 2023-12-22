@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
   _rb: {fileID: 8376214853598293737}
-  _power: 20
+  _power: 12
   _damage: 10
 --- !u!54 &8376214853598293737
 Rigidbody:

@@ -12,6 +12,7 @@ public class Arrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.Find("Player");
         transform.LookAt(_player.transform);
         _rb.velocity = transform.forward * _power;
     }

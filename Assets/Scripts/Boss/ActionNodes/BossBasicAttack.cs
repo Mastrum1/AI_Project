@@ -5,18 +5,22 @@ using UnityEngine;
 public class BasicAttack : ActionNode
 {
     [SerializeField] private GameObject _projectile;
+    [SerializeField] private int waveAmount;
 
     private float savedTime;
     // Start is called before the first frame update
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
         savedTime += Time.deltaTime;
-        if (_projectile != null && savedTime >= 3f)
+        if (_projectile != null && savedTime >= 5f)
         {
-            Instantiate(_projectile);
+            for (int i = 0; i < waveAmount; i++)
+            {
+                Instantiate(_projectile);
+            }    
             savedTime = 0;
             return State.Success;
         }
-        else return State.Failure;
+        else return State.Running;
     }
 }

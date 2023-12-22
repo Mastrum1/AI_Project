@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class HealthChecks : SequencerNode
 {
-    [SerializeField] private BossController _bossController;
     private float HP;
     private float currentHP;
     // Start is called before the first frame update
     protected override void OnStart(BehaviourTreeLauncher launcher)
     {
-        HP = _bossController.HP;
-        currentHP = _bossController.CurrentHp;
+        HP = launcher.GetComponent<BossController>().HP;
+        currentHP = launcher.GetComponent<BossController>().CurrentHp;
     }
 
     protected override State OnUpdate(BehaviourTreeLauncher launcher)

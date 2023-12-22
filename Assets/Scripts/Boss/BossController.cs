@@ -10,7 +10,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private Player _playerS;
 
     public float HP;
-    public float CurrentHp;
+    [NonSerialized] public float CurrentHp;
     // Start is called before the first frame update
     void Start()
     {

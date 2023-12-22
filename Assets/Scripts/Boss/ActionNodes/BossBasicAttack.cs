@@ -5,16 +5,16 @@ using UnityEngine;
 public class BasicAttack : ActionNode
 {
     [SerializeField] private GameObject _projectile;
-    // Start is called before the first frame update
-    protected override void OnStart(BehaviourTreeLauncher launcher)
-    {
-       Instantiate(_projectile);
-    }
 
+    private float savedTime;
+    // Start is called before the first frame update
     protected override State OnUpdate(BehaviourTreeLauncher launcher)
     {
-        if (_projectile != null)
+        savedTime += Time.deltaTime;
+        if (_projectile != null && savedTime >= 3f)
         {
+            Instantiate(_projectile);
+            savedTime = 0;
             return State.Success;
         }
         else return State.Failure;

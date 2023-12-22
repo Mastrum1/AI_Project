@@ -867,19 +867,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
+  _entityRenderer: {fileID: 1339775779798994065}
+  _entityPhysics: {fileID: 5444928703287737276}
+  _entityRb: {fileID: 5223136748524898793}
   _projectile: {fileID: 0}
-  _respawnTime: 0
+  _respawnTime: 15
   fovAngle: 45
   _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
+  _attackDelay: 1
+  _damage: 6
   player: {fileID: 0}
   agent: {fileID: 5093769242384371786}
-  detectionTime: 2
-  maxHp: 0
+  detectionTime: 8
+  maxHp: 17
   minion: {fileID: 0}
 --- !u!195 &5093769242384371786
 NavMeshAgent:

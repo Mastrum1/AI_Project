@@ -51,6 +51,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(_currentHp);
         savedTime += Time.deltaTime;
 
         if (gameObject.tag != "Mage")
@@ -172,6 +173,7 @@ public class EnemyController : MonoBehaviour
         if (_currentHp <= 0 && !_isDead)
         {
             _isDead = true;
+            animator.SetBool("IsDead", true);
             StartCoroutine(Resurect());
         }
     }
@@ -275,7 +277,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(_respawnTime);
         _currentHp = maxHp;
         _isDead = false;
-        minion.SetBool("IsDead", false); 
+        minion.SetBool("IsDead", false);
+        animator.SetBool("IsDead", false);
         _entityPhysics.SetActive(true);
       
     }

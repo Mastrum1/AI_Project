@@ -23,7 +23,7 @@ public class BehaviourTreeView : GraphView
         this.AddManipulator(new RectangleSelector());
 
 
-        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Pandouiille-Editor/BehaviourTreeEditor.uss");
+        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss");
         styleSheets.Add(styleSheet);
     }
 

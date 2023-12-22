@@ -7,8 +7,7 @@ using Unity.VisualScripting;
 
 public class ChasePlayer : StateMachineBehaviour
 {
-    [SerializeField] private GameObject player;
-
+    private GameObject player;
     private NavMeshAgent agent;
     private EnemyController user;
     private float savedTime;
@@ -17,6 +16,7 @@ public class ChasePlayer : StateMachineBehaviour
     {
         user = animator.gameObject.GetComponent<EnemyController>();
         agent = animator.gameObject.GetComponent<NavMeshAgent>();
+        player = user.GetComponent<EnemyController>().player;
         detectionTime = user.detectionTime;
         savedTime = 0;
     }

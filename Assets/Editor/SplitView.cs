@@ -10,6 +10,6 @@ public class SplitView : TwoPaneSplitView
 
     public SplitView()
     {
-        styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Pandouiille-Editor/BehaviourTreeEditor.uss"));
+        styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss"));
     }
 }

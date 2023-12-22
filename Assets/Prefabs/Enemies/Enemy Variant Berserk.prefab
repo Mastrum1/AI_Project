@@ -214,19 +214,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
-  _projectile: {fileID: 0}
-  _respawnTime: 0
+  _entityRenderer: {fileID: 7566710742113002751}
+  _entityPhysics: {fileID: 5936259551860257206}
+  _entityRb: {fileID: 8343483717671099816}
+  _projectile: {fileID: 5623852014952324954, guid: 088f78f8aa89c2c4ba020807676ef91f,
+    type: 3}
+  _respawnTime: 8
   fovAngle: 45
   _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
+  _attackDelay: 3
+  _damage: 8
   player: {fileID: 0}
   agent: {fileID: 840941546397033452}
-  detectionTime: 2
-  maxHp: 0
+  detectionTime: 5
+  maxHp: 25
   minion: {fileID: 8376311305274539632}
 --- !u!195 &840941546397033452
 NavMeshAgent:

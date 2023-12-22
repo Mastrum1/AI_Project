@@ -37,6 +37,7 @@ public class ExplosionDamages : MonoBehaviour
             case "Skeleton":
                 if (entity.TryGetComponent<EnemyController>(out var ec2))
                 {
+                    Debug.Log("hit");
                     ec2.TakeDamage(5);
                 }
                 break;

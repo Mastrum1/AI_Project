@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class EnemyController : MonoBehaviour
 {
@@ -132,8 +133,6 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Magnitude(player.transform.position - transform.position) < 8)
             {
                 animator.SetBool("IsInRange", true);
-                AudioManager.instance.PlaySFX("Enemy Attack");
-                StartCoroutine(ChooseAttack());
             }
             else
             {
@@ -145,7 +144,6 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Magnitude(player.transform.position - transform.position) < 2)
             {
                 animator.SetBool("IsInRange", true);
-                StartCoroutine(ChooseAttack());
             }
             else
             {
@@ -195,12 +193,16 @@ public class EnemyController : MonoBehaviour
             {
                 _isAttacking = true;
                 Instantiate(_projectile, transform.position, transform.rotation);
+                transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+                AudioManager.instance.PlaySFX("Enemy Attack");
+                StartCoroutine(ChooseAttack());
                 StartCoroutine(AttackDelay());
             }
             else
             {
                 _isAttacking = true;
                 _playerManager.TakeDamage(_damage);
+                StartCoroutine(ChooseAttack());
                 StartCoroutine(AttackDelay());
             }
         }
@@ -235,7 +237,7 @@ public class EnemyController : MonoBehaviour
             minion.SetInteger("Choose Attack", 2);
         if (rndm == 3)
             minion.SetInteger("Choose Attack", 3);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(_attackDelay);
         minion.SetBool("Attack", false);
 
     }

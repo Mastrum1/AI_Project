@@ -144,6 +144,7 @@ public class EnemyController : MonoBehaviour
                     if (hit.transform.gameObject.tag == "Player")
                     {
                         animator.SetBool("IsInRange", true);
+                        AudioManager.instance.PlaySFX("Enemy Attack");
                         StartCoroutine(ChooseAttack());
                     }
                 }

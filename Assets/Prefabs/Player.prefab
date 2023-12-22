@@ -1752,6 +1752,7 @@ MonoBehaviour:
   UI: {fileID: 0}
   globalVolume: {fileID: 0}
   _cam: {fileID: 0}
+  _debugMode: 0
 --- !u!114 &5963849415535537375
 MonoBehaviour:
   m_ObjectHideFlags: 0

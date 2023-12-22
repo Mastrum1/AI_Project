@@ -9,6 +9,7 @@ TagManager:
   - Berserker
   - Mage
   - Boss
+  - TheBoss
   layers:
   - Default
   - TransparentFX

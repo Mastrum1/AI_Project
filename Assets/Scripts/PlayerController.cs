@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(FireCooldown());
             }
             else _playerAnimations.SetBool("Attack", false);
-
         }
     }
 

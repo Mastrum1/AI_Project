@@ -51,7 +51,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_currentHp);
         savedTime += Time.deltaTime;
 
         if (gameObject.tag != "Mage")

@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class BossProjectile : MonoBehaviour
 {
@@ -13,6 +8,7 @@ public class BossProjectile : MonoBehaviour
 
     [SerializeField] private float _power;
     [SerializeField] private GameObject _player;
+    [SerializeField] private Player _playerS;
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private MeshRenderer _mesh;
     [SerializeField] private Rigidbody _rb;
@@ -34,15 +30,13 @@ public class BossProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            _playerS.TakeDamage(_power);
+        }
         _isExploding = true;
         Destroy(_vfx);
         Destroy(_trail);
-
-        if (collision.gameObject.name == "Door")
-        {
-            _isDestroying = true;
-            StartCoroutine(DestroyDoor(collision.gameObject));
-        }
 
         _collider.enabled = false;
         _mesh.enabled = false;
@@ -66,21 +60,6 @@ public class BossProjectile : MonoBehaviour
         if (!_isExploding && !_isDestroying && gameObject != null)
         {
             yield return new WaitForSeconds(10f);
-            Destroy(gameObject);
-        }
-    }
-
-    IEnumerator DestroyDoor(GameObject door)
-    {
-        if (door != null)
-        {
-            Rigidbody _doorRb = door.GetComponent<Rigidbody>();
-            _doorRb.isKinematic = false;
-            _doorRb.velocity = gameObject.transform.forward * 100f;
-            door.transform.GetChild(0).gameObject.SetActive(false);
-            door.GetComponent<Door>().isBurning = true;
-            yield return new WaitForSeconds(2f);
-            Destroy(door);
             Destroy(gameObject);
         }
     }

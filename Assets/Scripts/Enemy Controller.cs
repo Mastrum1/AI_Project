@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
 
     [NonSerialized] public Vector3 originalPos;
     [NonSerialized] public bool playerDetected;
-
     public float _currentHp { get; private set; }
     public GameObject player;
     public NavMeshAgent agent;
@@ -66,8 +65,6 @@ public class EnemyController : MonoBehaviour
             CheckIfDead();
 
             CheckIfInRange();
-
-            Attack.OnAttack += Attacking;
 
             if (gameObject.tag == "Skeleton" && gameObject.tag == "Berserk")
             {
@@ -190,43 +187,28 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    //event � modifier
-    private void Attacking()
-    {
-        if (!_isAttacking)
-        {
-            _isAttacking = true;
-            if (gameObject.tag == "Berserker" && _currentHp >= (maxHp / 2))
-            {
-                RangedAttack();
-            }
-            else CacAttack();
-
-            StartCoroutine(AttackDelay());
-        }
-    }
-
     public void TakeDamage(float damage)
     {
         _currentHp -= damage;
     }
 
-    public void CacAttack()
+    //event � modifier
+    public void Attacking()
     {
         if (!_isDead && !_isAttacking)
         {
-            _isAttacking = true;
-            _playerManager.TakeDamage(_damage);
-            StartCoroutine(AttackDelay());
-        }
-    }
-    public void RangedAttack()
-    {
-        if (!_isDead && !_isAttacking)
-        {
-            _isAttacking = true;
-            Instantiate(_projectile, transform.position, transform.rotation);
-            StartCoroutine(AttackDelay());
+            if ((gameObject.tag == "Berserker" && _currentHp >= (maxHp / 2)) || gameObject.tag == "Mage")
+            {
+                _isAttacking = true;
+                Instantiate(_projectile, transform.position, transform.rotation);
+                StartCoroutine(AttackDelay());
+            }
+            else
+            {
+                _isAttacking = true;
+                _playerManager.TakeDamage(_damage);
+                StartCoroutine(AttackDelay());
+            }
         }
     }
 

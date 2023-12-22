@@ -178,7 +178,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!95 &5485388716230731004
 Animator:
@@ -190,7 +190,7 @@ Animator:
   m_GameObject: {fileID: 1412046624926363410}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 39ec7a422ca407e478568484b6f62ab3, type: 2}
+  m_Controller: {fileID: 9100000, guid: ed63290b2ae33d742bf1150c0dedb1b8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -214,19 +214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
-  _projectile: {fileID: 0}
-  _respawnTime: 0
-  fovAngle: 45
-  _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
   player: {fileID: 0}
   agent: {fileID: 840941546397033452}
   detectionTime: 2
-  maxHp: 0
+  fovAngle: 45
+  HP: 100
   minion: {fileID: 8376311305274539632}
 --- !u!195 &840941546397033452
 NavMeshAgent:
@@ -594,10 +586,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2830375791341645239}
-  - component: {fileID: 5617954886741342207}
+  - component: {fileID: 1968447860895792635}
   m_Layer: 0
   m_Name: Physics
-  m_TagString: Berserker
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -611,14 +603,14 @@ Transform:
   m_GameObject: {fileID: 5936259551860257206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.049, z: 0}
+  m_LocalPosition: {x: 0, y: 0.424, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7731938169272316336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5617954886741342207
-CapsuleCollider:
+--- !u!135 &1968447860895792635
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -635,10 +627,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.7742708
-  m_Direction: 1
+  serializedVersion: 3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6452213695526269445
 GameObject:
@@ -731,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 7516685400395942947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.044, y: 0.133, z: -0.076}
+  m_LocalPosition: {x: 0.044, y: -0.24, z: -0.076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -748,7 +738,7 @@ Animator:
   m_GameObject: {fileID: 7516685400395942947}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e4f8e3c8371d3344dad2f54420237430, type: 3}
-  m_Controller: {fileID: 9100000, guid: 10473a770d3e9bd4ba9f0b6af22e0335, type: 2}
+  m_Controller: {fileID: 9100000, guid: 20f34657866103c42995a563e462d591, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

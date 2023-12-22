@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 3242515539049286512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.031, y: 0.186, z: -0.067}
+  m_LocalPosition: {x: -0.031, y: -0.101, z: -0.067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -300,7 +300,7 @@ Animator:
   m_GameObject: {fileID: 3242515539049286512}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e4f8e3c8371d3344dad2f54420237430, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8ce89ccec00a7df4fb0a3e28997a8d9e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 388f6201370d42b438cba08983662a0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -412,7 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7538585011507364760}
-  - component: {fileID: 1908243402724525831}
+  - component: {fileID: 687417606218654747}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -429,14 +429,14 @@ Transform:
   m_GameObject: {fileID: 4073735644502960289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.054, y: 1.113, z: 0}
+  m_LocalPosition: {x: 0, y: 0.424, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2909238512322755937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1908243402724525831
-CapsuleCollider:
+--- !u!135 &687417606218654747
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -453,10 +453,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.7673438
-  m_Direction: 1
+  serializedVersion: 3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4693677259151985357
 GameObject:
@@ -994,7 +992,7 @@ GameObject:
   - component: {fileID: 184494234028881213}
   m_Layer: 0
   m_Name: Enemy Variant Minion
-  m_TagString: Skeleton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1042,7 +1040,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!95 &7163187046648766611
 Animator:
@@ -1078,19 +1076,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f17cd20620004943992bbbf6c0f42d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityRenderer: {fileID: 0}
-  _entityPhysics: {fileID: 0}
-  _entityRb: {fileID: 0}
-  _projectile: {fileID: 0}
-  _respawnTime: 0
-  fovAngle: 45
-  _playerManager: {fileID: 0}
-  _attackDelay: 0
-  _damage: 0
   player: {fileID: 0}
   agent: {fileID: 184494234028881213}
   detectionTime: 2
-  maxHp: 0
+  fovAngle: 45
+  HP: 100
   minion: {fileID: 2595767041752692644}
 --- !u!195 &184494234028881213
 NavMeshAgent:

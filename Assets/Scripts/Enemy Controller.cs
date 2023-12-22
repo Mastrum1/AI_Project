@@ -21,10 +21,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _damage;
 
     [NonSerialized] public Vector3 originalPos;
-
-    public float _currentHp { get; private set; }
     [NonSerialized] public bool playerDetected;
 
+    public float _currentHp { get; private set; }
     public GameObject player;
     public NavMeshAgent agent;
     public float detectionTime;
@@ -57,6 +56,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(_currentHp);
         savedTime += Time.deltaTime;
 
         if (savedTime >= 3f)

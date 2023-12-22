@@ -6,7 +6,6 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private SphereCollider _collidier;
     [SerializeField] private float _power;
     [SerializeField] private float _damage;
 
@@ -22,12 +21,8 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().TakeDamage(_damage);
-            Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Wall")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

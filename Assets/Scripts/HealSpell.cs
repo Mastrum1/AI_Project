@@ -9,9 +9,13 @@ public class HealSpell : MonoBehaviour
     [SerializeField] private float _healAmount;
     [SerializeField] private float _healCooldown;
     [SerializeField] private float _healDuration;
+    [SerializeField] private SphereCollider _collider;
+    
+    private GameObject _SpellLight;
     private bool _isHealing;
     private bool _started;
-    private EnemyController[] _list; 
+    private EnemyController[] _list;
+    private bool _maxRadiusReach;
 
 
     // Start is called before the first frame update
@@ -19,6 +23,13 @@ public class HealSpell : MonoBehaviour
     {
         _isHealing = false;
         _started = false;
+        _maxRadiusReach = false;
+
+        _SpellLight = GameObject.Find("HealingSpellEffects");
+        if (_SpellLight != null)
+            _SpellLight.SetActive(true); //a changer pour modifier l'effet du sort, activation instant simple for now
+        else
+            Debug.Log("HealingSpellEffects not found");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +48,17 @@ public class HealSpell : MonoBehaviour
             StartCoroutine(DestroyAura());
             _started = true;
         }
-        if (_isHealing == false)
+
+        if (_collider.radius < 1)
+        {
+            _collider.radius += 0.1f;
+        }
+        else
+        {
+            _maxRadiusReach = true;
+        }
+
+        if (_isHealing == false && _maxRadiusReach && _list != null)
         {
             foreach (EnemyController enemy in _list)
             {

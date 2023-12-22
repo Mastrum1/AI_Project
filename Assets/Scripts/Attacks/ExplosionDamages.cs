@@ -52,6 +52,12 @@ public class ExplosionDamages : MonoBehaviour
                     ec4.TakeDamage(5);
                 }
                 break;
+            case "TheBoss":
+                if (entity.TryGetComponent<EnemyController>(out var ec5))
+                {
+                    ec5.TakeDamage(5);
+                }
+                break;
         }
     }
 

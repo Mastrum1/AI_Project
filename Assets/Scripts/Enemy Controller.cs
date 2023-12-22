@@ -1,12 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
@@ -144,6 +139,7 @@ public class EnemyController : MonoBehaviour
                     if (hit.transform.gameObject.tag == "Player")
                     {
                         animator.SetBool("IsInRange", true);
+                        AudioManager.instance.PlaySFX("Enemy Attack");
                         StartCoroutine(ChooseAttack());
                     }
                 }

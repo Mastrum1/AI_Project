@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
         if (MoveDir.y > 0)
             _playerAnimations.SetBool("Walk", true);
+
         else if (MoveDir.y == 0)
             _playerAnimations.SetBool("Walk", false);
 
@@ -118,6 +119,7 @@ public class PlayerController : MonoBehaviour
         {           
             if (fire > 0 && _fireReady)
             {
+                AudioManager.instance.PlaySFX("Boule de feu");
                 _playerAnimations.SetBool("Attack", true);
                 _playerManager.mana -= 10;
                 GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
@@ -135,6 +137,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _fireReady = true;
     }
+
 
 
 }

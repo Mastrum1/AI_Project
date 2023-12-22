@@ -12,6 +12,7 @@ public class Walk : ActionNode
     private NavMeshAgent agent;
     private NavMeshData surfaceData;
     private Vector3 randDestination;
+    private float savedTime;
     private bool finished;
     protected override void OnStart(BehaviourTreeLauncher launcher)
     {
@@ -25,7 +26,13 @@ public class Walk : ActionNode
     {
         if (agent.hasPath == false && finished == true)
         {
-            return State.Success;
+            savedTime += Time.deltaTime;
+            if (savedTime >= 5f)
+            {
+                savedTime = 0;
+                return State.Success;
+            }
+            else return State.Running;
         }
         else return State.Running;
     }

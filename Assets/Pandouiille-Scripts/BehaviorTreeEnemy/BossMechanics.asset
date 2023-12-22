@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6122508325101249598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ece39995ceb944d84aa691985c335b, type: 3}
+  m_Name: BasicAttack
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 6295b994918ab13408a867143bcfcbdf
+  position: {x: -558.17126, y: -625.146}
+  actionNodeMessage: Action
+  _projectile: {fileID: 0}
+--- !u!114 &-3739909750710142637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f834fe767fa284e8c82f3a480f61d6, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 0dc81204af06fda418484189b5baff93
+  position: {x: -304.50052, y: 336.0399}
+  children:
+  - {fileID: 6284907334093638327}
+--- !u!114 &-3001780474137014201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0989f1330e5c152448fe68b5f880e57d, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: f4da338c109a57d4890f344593fe7038
+  position: {x: -5.0340896, y: 185.0454}
+  children:
+  - {fileID: -3739909750710142637}
+  - {fileID: -2891515917394655424}
+--- !u!114 &-2891515917394655424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c32ea37c1c282b4f9fc7b5dc0a2c1eb, type: 3}
+  m_Name: HealthChecks
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 2d8b14619d7bcb64299ec257b75770be
+  position: {x: -53.999947, y: 340.0454}
+  children:
+  - {fileID: 312010757599590770}
+  _bossController: {fileID: 0}
 --- !u!114 &-1224502622592918054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,7 +90,7 @@ MonoBehaviour:
   isStarted: 0
   guid: 746122dbe4664af4c97f3bcc069204ae
   position: {x: 0, y: 0}
-  child: {fileID: 0}
+  child: {fileID: 5710873129100399339}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,3 +107,68 @@ MonoBehaviour:
   treeState: 0
   Nodes:
   - {fileID: -1224502622592918054}
+  - {fileID: 5710873129100399339}
+  - {fileID: -3001780474137014201}
+  - {fileID: -6122508325101249598}
+  - {fileID: -3739909750710142637}
+  - {fileID: 6284907334093638327}
+  - {fileID: -2891515917394655424}
+  - {fileID: 312010757599590770}
+--- !u!114 &312010757599590770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2271b8175e8bc2438db7d9bee513439, type: 3}
+  m_Name: BossWallAttack
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 22969c0b3f1201945b0dfbe6c9b35bb9
+  position: {x: -64.03402, y: 473.11356}
+  actionNodeMessage: Action
+  _wallAttack: {fileID: 2661048776246838347, guid: b56f8cf1444f9a24db42b2afc6ec3586,
+    type: 3}
+--- !u!114 &5710873129100399339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79f3477b1138c94e877b8242c161cc7, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 42a2106e85b07834b9e8b56267aefb99
+  position: {x: 0.3224878, y: 76.96999}
+  child: {fileID: -3001780474137014201}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+  maxRepeats: 0
+--- !u!114 &6284907334093638327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ece39995ceb944d84aa691985c335b, type: 3}
+  m_Name: BasicAttack
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 8100e9a644ead1145912c2edb2f7be35
+  position: {x: -302.4806, y: 460.7996}
+  actionNodeMessage: Action
+  _projectile: {fileID: 2638929758560766987, guid: 926ae3251632f8b459baea19e10187f5,
+    type: 3}

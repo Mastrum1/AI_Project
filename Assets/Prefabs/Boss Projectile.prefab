@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 15
-  _player: {fileID: 0}
+  _player: {fileID: 1519993683366360093, guid: 220c4b8f8ff5e264b844422bf67d179e, type: 3}
   _collider: {fileID: 343944535859803099}
   _mesh: {fileID: 8897510009083743693}
   _rb: {fileID: 287899801334674383}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class EnemyController : MonoBehaviour
 {
@@ -126,24 +127,16 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfInRange()
     {
-        if (gameObject.tag == "Berserker" && _currentHp / maxHp * 100 > 50)
+        if (gameObject.tag == "Berserker" && _currentHp > maxHp * .5)
         {
 
-            for (int i = 0; i < ray.Length - 1; i++)
+            if (Vector3.Magnitude(player.transform.position - transform.position) < 8)
             {
-                if (Physics.Raycast(ray[i], out hit, 5))
-                {
-                    if (hit.transform.gameObject.tag == "Player")
-                    {
-                        animator.SetBool("IsInRange", true);
-                        AudioManager.instance.PlaySFX("Enemy Attack");
-                        StartCoroutine(ChooseAttack());
-                    }
-                }
-                else
-                {
-                    animator.SetBool("IsInRange", false);
-                }
+                animator.SetBool("IsInRange", true);
+            }
+            else
+            {
+                animator.SetBool("IsInRange", false);
             }
         }
         else
@@ -151,7 +144,6 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Magnitude(player.transform.position - transform.position) < 2)
             {
                 animator.SetBool("IsInRange", true);
-                StartCoroutine(ChooseAttack());
             }
             else
             {
@@ -197,16 +189,20 @@ public class EnemyController : MonoBehaviour
     {
         if (!_isDead && !_isAttacking)
         {
-            if ((gameObject.tag == "Berserker" && _currentHp >= (maxHp / 2)) || gameObject.tag == "Mage")
+            if ((gameObject.tag == "Berserker" && _currentHp > maxHp * .5) || gameObject.tag == "Mage")
             {
                 _isAttacking = true;
                 Instantiate(_projectile, transform.position, transform.rotation);
+                transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.up);
+                AudioManager.instance.PlaySFX("Enemy Attack");
+                StartCoroutine(ChooseAttack());
                 StartCoroutine(AttackDelay());
             }
             else
             {
                 _isAttacking = true;
                 _playerManager.TakeDamage(_damage);
+                StartCoroutine(ChooseAttack());
                 StartCoroutine(AttackDelay());
             }
         }
@@ -241,7 +237,7 @@ public class EnemyController : MonoBehaviour
             minion.SetInteger("Choose Attack", 2);
         if (rndm == 3)
             minion.SetInteger("Choose Attack", 3);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(_attackDelay);
         minion.SetBool("Attack", false);
 
     }

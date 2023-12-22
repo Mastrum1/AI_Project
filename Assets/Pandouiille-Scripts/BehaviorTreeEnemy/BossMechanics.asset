@@ -18,6 +18,7 @@ MonoBehaviour:
   position: {x: -558.17126, y: -625.146}
   actionNodeMessage: Action
   _projectile: {fileID: 0}
+  waveAmount: 0
 --- !u!114 &-3739909750710142637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +74,6 @@ MonoBehaviour:
   position: {x: -53.999947, y: 340.0454}
   children:
   - {fileID: 312010757599590770}
-  _bossController: {fileID: 0}
 --- !u!114 &-1224502622592918054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +172,4 @@ MonoBehaviour:
   actionNodeMessage: Action
   _projectile: {fileID: 2638929758560766987, guid: 926ae3251632f8b459baea19e10187f5,
     type: 3}
+  waveAmount: 5

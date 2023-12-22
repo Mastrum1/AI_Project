@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
                 AudioManager.instance.PlaySFX("Boule de feu");
                 _playerAnimations.SetBool("Attack", true);
                 _playerManager.mana -= 10;
+                _playerManager.savedTime = 0;
                 GameObject myProj = Instantiate(_projectile, _playerBody.transform.position, _playerBody.transform.rotation);
                 myProj.GetComponent<Rigidbody>().AddForce(_playerBody.transform.forward * 1000);
                 StartCoroutine(FireCooldown());

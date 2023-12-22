@@ -13,10 +13,10 @@ public class BasicAttack : ActionNode
         savedTime += Time.deltaTime;
         if (_projectile != null && savedTime >= 3f)
         {
-            Instantiate(_projectile);
+            Instantiate(_projectile, launcher.transform.position, launcher.transform.rotation);
             savedTime = 0;
             return State.Success;
         }
-        else return State.Failure;
+        else return State.Running;
     }
 }

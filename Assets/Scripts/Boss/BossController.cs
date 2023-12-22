@@ -22,4 +22,9 @@ public class BossController : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(_player.transform.position - transform.position, transform.up);
     }
+
+    public void TakeDamage(float damage)
+    {
+        CurrentHp -= damage;
+    }
 }

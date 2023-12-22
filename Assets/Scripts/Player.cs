@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public float hp;
     public float mana;
     public bool CursedMod = false;
+    [NonSerialized] public float savedTime;
 
     [SerializeField] private GameObject UI;
     [SerializeField] private Volume globalVolume;
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        savedTime += Time.deltaTime;
+
         if (!_manaRegen && mana < _maxMana)
             StartCoroutine(ManaRegen());
         if (!_HealRegen && hp < _maxHp)
@@ -51,6 +55,10 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
+        }
+        if (mana > _maxMana)
+        {
+            mana = _maxMana;
         }
             
         float _hpLossPercent = 1 - (hp / _maxHp);
@@ -104,8 +112,8 @@ public class Player : MonoBehaviour
     IEnumerator ManaRegen()
     {
         _manaRegen = true;
-        yield return new WaitForSeconds(.5f);
-        mana ++;
+        yield return new WaitForSeconds(1f);
+        mana += (1 * savedTime);
         _manaRegen = false;
     }
     IEnumerator HealRegen()

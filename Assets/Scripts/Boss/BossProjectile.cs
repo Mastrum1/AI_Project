@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class BossProjectile : MonoBehaviour
 {
+    private GameObject _player;
     private bool _isExploding;
     private bool _isDestroying;
 
     [SerializeField] private float _power;
-    [SerializeField] private GameObject _player;
     [SerializeField] private Player _playerS;
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private MeshRenderer _mesh;
@@ -20,6 +20,8 @@ public class BossProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.Find("Player");
+
         transform.LookAt(_player.transform);
         _rb.velocity = transform.forward * _power;
 
@@ -30,10 +32,6 @@ public class BossProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            _playerS.TakeDamage(_power);
-        }
         _isExploding = true;
         Destroy(_vfx);
         Destroy(_trail);
